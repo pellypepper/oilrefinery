@@ -1,0 +1,129 @@
+.content-5 {
+  position: relative;
+  overflow: hidden;
+display: flex;
+  background: linear-gradient(135deg, #969cab 0%, #d0d9e6 100%);
+  padding: 3rem 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+width: 90%;
+border-radius: 10px;
+height: max-content;
+align-items: center;
+justify-content: space-around;
+}
+
+/* Add animated background effect */
+.content-5::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    white 0px,
+    white 2px,
+    transparent 2px,
+    transparent 8px
+  );
+  animation: backgroundShift 30s linear infinite;
+}
+
+.rating {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+  border: 2px solid var(--primary-color);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+ 
+}
+
+.rating:nth-child(1) { animation-delay: 0.2s; }
+.rating:nth-child(2) { animation-delay: 0.4s; }
+.rating:nth-child(3) { animation-delay: 0.6s; }
+.rating:nth-child(4) { animation-delay: 0.8s; }
+
+.rating span {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.rating .span {
+  font-size: 1rem;
+
+  color: var(--primary-color);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add pulse effect when counter finishes */
+.rating h1 span {
+  display: inline-block;
+}
+
+.rating h1 span.pulse {
+  animation: pulse 0.5s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .content-5 {
+    
+    gap: 2rem;
+     width: max-content;
+  }
+  
+  .rating {
+
+    height: 150px;
+  }
+  
+  .rating h1 {
+    font-size: 2rem;
+  }
+  .rating span {
+  font-size: 2.5rem;
+
+}
+
+
+}
+
+@media screen and (max-width: 480px) {
+
+}

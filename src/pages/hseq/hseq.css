@@ -1,0 +1,25 @@
+.hseq-container{
+    background-color: white;
+    margin-top: 4rem;
+    width: 100%;
+    color: black;
+  
+}
+.hseq-wrapper{
+    padding: 60px;
+}
+.hseq-title{
+    margin-top: 2rem;
+    text-align: center;
+}
+.hseq-bg{
+    background-image: url('../../assets/hseq.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 700px;
+}
+.hseq-text{
+    padding: 40px;
+
+}

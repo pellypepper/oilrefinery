@@ -1,0 +1,138 @@
+.card-image{
+    height: 200px;
+
+}
+#card-box{
+ 
+
+
+}
+.text-card{
+    text-align: left;
+    text-align: justify;
+    width: 100%;
+}
+
+#card-box button{
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 70%;
+    margin: auto;
+
+}
+
+@media screen and (max-width: 480px){
+    #card-box{
+ 
+     
+     
+    }
+    
+ 
+ 
+    #card-body h3{
+        font-size: 12px;
+        margin-top: -.8rem;
+    }
+    #card-body p{
+        font-size: 9px;
+
+    }
+    #card-box button{
+        
+        padding: 5px;
+      font-size: 12px;
+    
+    }
+  
+}
+
+
+@media screen and (min-width: 481px){
+    #card-box{
+width: 80%;
+height: 500px;
+    }
+    
+ 
+ 
+    #card-body h3{
+        font-size: 20px;
+        margin-top: -.8rem;
+    }
+    #card-body p{
+        font-size: 12px;
+
+    }
+    #card-box button{
+        
+        padding: 7px;
+      font-size: 12px;
+    
+    }
+  
+}
+
+
+@media screen and (min-width: 769px){
+    .card-image{
+     
+    
+    }
+    
+ 
+    #card-box{
+      
+     height: auto;
+     
+    }
+    #card-body h3{
+        font-size: 17px;
+        margin-top: -.8rem;
+    }
+    #card-body p{
+        font-size: 15px;
+
+    }
+    #card-box button{
+        
+        padding: 8px;
+      font-size: 15px;
+    
+    }
+  
+  
+}
+
+@media screen and (min-width: 1024px){
+    .card-image{
+     
+        height: 200px;
+    }
+    
+ 
+    #card-box{
+
+height: 500px;
+        
+     
+    }
+    #card-body h3{
+        font-size: 20px;
+        margin-top: -.8rem;
+    }
+    #card-body p{
+        font-size: 15px;
+
+    }
+    #card-box button{
+        
+        padding: 10px;
+      font-size: 15px;
+    
+    }
+  
+}

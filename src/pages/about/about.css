@@ -1,0 +1,117 @@
+.about{
+    background-color: white;
+    margin-top: 4rem;
+    width: 100%;
+    color: black;
+ 
+}
+
+.about-bg{
+    width: 100%;
+    height: 700px;
+    background-position: center;
+    background-size: cover;
+ background-image: url('../../assets/about1.jpg');
+ display: flex;
+ align-items: center;
+}
+.about-bg h1{
+    font-size: 50px;
+    margin-left: 3rem;
+    color: white;
+
+}
+
+.about-middle{
+  display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 15px;
+    padding: 40px;
+}
+
+.about-bg2{
+    background-position: center;
+    background-size: cover;
+    background-image: url('../../assets/about2.jpg');
+}
+
+.about-middle button{
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+footer{
+    padding: 40px;
+    display: flex;
+     justify-items: center;
+     align-items: center;
+        height: 100%;
+        background-color: black;
+        color: white;
+}
+
+
+@media screen and (max-width: 480px){
+    .about-middle{
+      height: 500px;
+
+      }
+
+      .about-bg2{
+  height: 400px;
+    }
+    .about-text h1{
+        font-size: 20px;
+    }
+    .about-text p{
+        font-size: 10px;
+    }
+    
+}
+
+@media screen and (min-width: 481px){
+
+    .about-text h1{
+        font-size: 22px;
+    }
+    .about-text p{
+        width: 100%;
+        text-align: justify;
+        font-size: 13px;
+    }
+    
+}
+
+
+@media screen and (min-width: 768px){
+  
+    .about-text h1{
+        font-size: 25px;
+    }
+    .about-text p{
+        width: 100%;
+        text-align: justify;
+        font-size: 15px;
+    }
+    
+}
+
+@media screen and (min-width: 1024px){
+  
+    .about-text h1{
+        font-size: 27px;
+    }
+    .about-text p{
+        width: 100%;
+        text-align: justify;
+        font-size: 17px;
+    }
+    
+}

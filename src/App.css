@@ -1,0 +1,51 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+
+}
+
+
+
+:root{
+  --primary-color: #CE2D4F;
+  --secondary-color: #CE6D8B;
+  --background-dark-color: #10121A;
+  --background-dark-grey: #191D2B;
+  --border-color: #2e344e;
+  --background-light-color: #F1F1F1;
+  --white-color: #FFF;
+  --font-light-color: #a4acc4;
+  --font-dark-color: #313131;
+  --font-dark-color-2: #151515;
+  --sidebar-dark-color: #191D2B;
+  --scrollbar-bg-color: #383838;
+  --scrollbar-thump-color: #6b6b6b;
+  --scrollbar-track-color: #383838;
+
+}
+
+
+
+
+::-webkit-scrollbar {
+  width: 8px; 
+  height: 22px; 
+}
+
+::-webkit-scrollbar-track {
+  background:var(--background-dark-color);
+  border-radius: 6px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background:var(--primary-color); 
+  border-radius: 3px; 
+}
+
+/* Add a hover effect to the thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: var( --secondary-color); 
+}
