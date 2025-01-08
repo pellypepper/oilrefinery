@@ -48,6 +48,7 @@ className='map-frame'
 style={{ border: 0 }}
 allowFullScreen
 loading="lazy"
+title="Description of iframe content"
 referrerPolicy="no-referrer-when-downgrade"
 ></iframe>
     </div>
