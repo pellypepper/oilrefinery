@@ -29,10 +29,10 @@ const Navbar = () => {
 
   return (
     <div className='layout'>
-      <nav className=" align-items-center px-3  d-flex justify-content-between">
+      <nav className=" align-items-center px-5  d-flex justify-content-between">
 
-        <div>
-          <h1>Logo</h1>
+        <div className='logo-wrapper'>
+          <h1><Link to="/">TAIMYR <span>FUEL</span></Link></h1>
         </div>
 
         <div className='menu-wrapper' ref={menuRef}>

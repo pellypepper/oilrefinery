@@ -1,6 +1,7 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import './footer.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -21,10 +22,10 @@ export default function Footer() {
 <div className="grid-2">
     <h3>Quick Links</h3>
 
-        <p><span><FaArrowRight  color="white" /></span>About Us</p>
+        <p><Link to="/about"><span><FaArrowRight  color="white" /></span>About Us</Link></p>
         <p><span><FaArrowRight  color="white" /></span>Our Services</p>
-        <p><span><FaArrowRight color="white" /></span>HSEQ</p>
-        <p><span><FaArrowRight color="white" /></span>Contact Us</p>
+        <p><Link to="/hseq"><span><FaArrowRight  color="white" /></span>HSEQ</Link></p>
+        <p><Link to="/contact"><span><FaArrowRight  color="white" /></span>Contact Us</Link></p>
 
 
 </div>
@@ -32,9 +33,9 @@ export default function Footer() {
 <div className="grid-3">
     <h3>Services</h3>
     
-        <p><span><FaArrowRight  color="white" /></span>Oil Refining</p>
-        <p><span><FaArrowRight  color="white" /></span>Tank Storage</p>
-        <p><span><FaArrowRight  color="white" /></span>Oil Exploration</p>
+    <p><Link to="/oil"><span><FaArrowRight  color="white" /></span>Oil Refinery</Link></p>
+    <p><Link to="/tank"><span><FaArrowRight  color="white" /></span>Tank Storage</Link></p>
+    <p><Link to="/refinery"><span><FaArrowRight  color="white" /></span>Oil Exploration</Link></p>
 
 
 </div>

@@ -3,7 +3,15 @@
     height: max-content;
     margin-top: 2.7rem;
 }
-.footer-container{
+.footer-wrapper p:hover, .footer-wrapper p a:hover{
+color: var(--primary-color);
+}
+
+p a{
+    cursor: pointer;
+    color: white;
+    text-decoration: none  ;
+}.footer-container{
     display: grid;
 
     height: 100%;

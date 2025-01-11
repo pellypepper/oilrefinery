@@ -241,7 +241,7 @@ main {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     animation: slideIn 0.8s forwards; 
-    color:  black;
+    color: var(--primary-color);
     font-weight: bolder;
 }
 
@@ -295,7 +295,7 @@ main {
 
 }
 .content-4 h3{
-    color: black;
+    color: var(--primary-color);
     font-weight: bolder;
 }
 .card-container{
@@ -309,7 +309,7 @@ main {
 
 .tick{
 
-    color: black;
+    color: var(--primary-color);
 }
 
 
@@ -467,7 +467,7 @@ display: flex;
    }
 
     .content-4 h3{
-        font-size: 12px;
+        font-size: 14px;
         margin-top: 4.5rem;
     }
     .content-4 h1{
