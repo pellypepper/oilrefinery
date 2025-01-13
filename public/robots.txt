@@ -2,6 +2,16 @@ User-agent: Googlebot
 Allow: /maps/embed
 Allow: /search
 
-User-agent: *
-Disallow: / 
 
+
+# Crawlers of certain social media sites are allowed to access page markup when google.com/imgres* links are shared. To learn more, please contact images-robots-allowlist@google.com.
+User-agent: Twitterbot
+Allow: /imgres
+Allow: /search
+
+
+User-agent: facebookexternalhit
+Allow: /imgres
+Allow: /search
+
+Sitemap: https://www.google.com/sitemap.xml
