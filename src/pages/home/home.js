@@ -13,7 +13,7 @@ export default function Home() {
     { id: 'section2', image: '/assets/bg2.jpg' },
     { id: 'section3', image: '/assets/bg3.jpg' },
     { id: 'section4', image: '' },
-    { id: 'section5', image: '/assets/bg6.jpg' },
+    { id: 'section5', image: '' },
     { id: 'section6', image: '' },
     { id: 'section7', image: '' },
   ];
@@ -140,7 +140,9 @@ export default function Home() {
                 </div>
               )}
               {index === 4 && (
-                <Rating />
+               <div className='content-x text-content'>
+                 <Rating />
+               </div>
               )}
 
               {index === 5 && (
