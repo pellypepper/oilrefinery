@@ -11,7 +11,7 @@
     height: 700px;
     background-position: center;
     background-size: cover;
- background-image: url('../../assets/about1.jpg');
+ background-image: url('../../assets/about1.webp');
  display: flex;
  align-items: center;
 }
@@ -32,7 +32,7 @@
 .about-bg2{
     background-position: center;
     background-size: cover;
-    background-image: url('../../assets/about2.jpg');
+    background-image: url('../../assets/about2.webp');
 }
 
 .about-middle button{

@@ -9,9 +9,9 @@ export default function Home() {
   const sectionRefs = useRef([]); // Store references to sections
 
   const sections = [
-    { id: 'section1', image: '/assets/card1.jpg' },
-    { id: 'section2', image: '/assets/bg2.jpg' },
-    { id: 'section3', image: '/assets/bg3.jpg' },
+    { id: 'section1', image: '/assets/card1.webp' },
+    { id: 'section2', image: '/assets/bg2.webp' },
+    { id: 'section3', image: '/assets/bg3.webp' },
     { id: 'section4', image: '' },
     { id: 'section5', image: '' },
     { id: 'section6', image: '' },
@@ -167,7 +167,7 @@ export default function Home() {
                       <input type="email" placeholder='Enter Your Email' />
                       <button>Subscribe</button>
 
-                    </div>
+                    </div>  
 
                   </div>
                 </div>

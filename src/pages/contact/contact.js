@@ -18,10 +18,10 @@ export default function Contact() {
                 </div>
                 <div className="contact-item border">
                     <FontAwesomeIcon className="icon" icon={faEnvelope} />
-                    <span>info@example.com</span>
-                    <span>info@example.com</span>
-                    <span>info@example.com</span>
-                    <span>info@example.com</span>
+                    <span>info@taimyroil.com</span>
+                    <span>info@taimyroil.com</span>
+                    <span>info@taimyroil.com</span>
+                    <span>info@taimyroil.com</span>
                 </div>
                 <div className="contact-item border" >
 
