@@ -13,7 +13,7 @@ export default function About() {
               <div className="about-middle">
                   <div className="about-text">
                   <h1>Fostering Innovation and Excellence in Krasnoyarsk’s Oil Sector</h1>
-                  <p>Taimyr Fuel Company is a leading oil refinery and storage facility situated in Krasnoyarsk. As a vital player in the region's energy landscape, we focus on refining and supplying high-quality petroleum products to satisfy both local and global demands. Our advantageous location, state-of-the-art technology, and dedication to sustainable energy practices establish us as a frontrunner in oil refining and logistics.</p>
+                  <p>Taimyr Fuel Company is a leading oil Mandate facilitator situated in Krasnoyarsk. As a vital player in the region's energy landscape, we focus on bringing buyers and seller company supplying high-quality petroleum products from a reputable refining company to satisfy both local and global demands. Our advantageous location, state-of-the-art technology, and dedication to sustainable energy practices establish us as a frontrunner in oil.</p>
                   <button>Learn More</button>
                   </div>
 

@@ -44,10 +44,7 @@ const Navbar = () => {
               </span>
               {isServicesOpen && (
                 <ul className='submenu-wrapper  list-unstyled lh-lg'>
-                  <li className='p-2'><Link to="/oil">Oil Refinery</Link></li>
-                  <p className='border-top'></p>
-                  <li className='p-2'><Link to="/tank">Tank Storage</Link></li>
-                  <p className='border-top'></p>
+              
                   <li className='p-2'><Link to="/refinery">Oil Exploration</Link></li>
 
                 </ul>
@@ -70,7 +67,7 @@ const Navbar = () => {
       </main>
       <div className="whatsapp-logo">
                 <a
-                    href="https://wa.me/4407398653511"
+                    href="https://wa.me/4407349459445"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="whatsapp-button"

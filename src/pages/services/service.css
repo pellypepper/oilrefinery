@@ -56,20 +56,7 @@
     transform: scale(0.98);
     transition: transform 0.3s ease-out;
   }
-.oil-bg{
-  background-image: url('../../assets/oil.jpg');
-  width: 100%;
-  background-position: center;
-  background-size: cover;
-  height: 400px;
-}
-.tank-bg{
-    background-image: url('../../assets/tank.jpg');
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    height: 400px;
-  }
+
   .refinery-bg{
     background-image: url('../../assets/refinery.jpg');
     width: 100%;

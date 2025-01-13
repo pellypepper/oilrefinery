@@ -33,8 +33,8 @@ export default function Footer() {
 <div className="grid-3">
     <h3>Services</h3>
     
-    <p><Link to="/oil"><span><FaArrowRight  color="white" /></span>Oil Refinery</Link></p>
-    <p><Link to="/tank"><span><FaArrowRight  color="white" /></span>Tank Storage</Link></p>
+    <p><Link to=""><span><FaArrowRight  color="white" /></span>Oil Refinery</Link></p>
+    <p><Link to=""><span><FaArrowRight  color="white" /></span>Tank Storage</Link></p>
     <p><Link to="/refinery"><span><FaArrowRight  color="white" /></span>Oil Exploration</Link></p>
 
 

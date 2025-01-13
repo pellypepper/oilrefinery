@@ -14,7 +14,7 @@ export default function Contact() {
                 <div className="contact-item border">
                     <FontAwesomeIcon className="icon" icon={faPhone} />
                     <h3>Phone</h3>
-                    <p>+762627828</p>
+                    <p>+447349459445</p>
                 </div>
                 <div className="contact-item border">
                     <FontAwesomeIcon className="icon" icon={faEnvelope} />
