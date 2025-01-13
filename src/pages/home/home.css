@@ -55,6 +55,17 @@ main {
   .section.visible::before {
     opacity: 0.7; 
   }
+  /* Animation Styles */
+.section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .section.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
   
 .content-1{
     padding: 20px;
@@ -478,7 +489,7 @@ display: flex;
  
     }
    .home-content .content-4{
-        padding: 50px;
+    
         justify-content: center;
         align-items: center;
         height: 100%;
@@ -486,7 +497,7 @@ display: flex;
 
     .content-4 h3{
         font-size: 14px;
-        margin-top: 4.5rem;
+        margin-top: .5rem;
     }
     .content-4 h1{
         font-size: 15px;

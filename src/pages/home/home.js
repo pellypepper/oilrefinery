@@ -1,19 +1,12 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import './home.css';
 
-
-
 import Rating from '../../component/rating/rating';
-
-
-
 import Footer from '../../component/footer/footer';
 
-
 export default function Home() {
-
-  const [isVisible, setIsVisible] = useState(false);
+  const [visibleSections, setVisibleSections] = useState([]); // Track visible sections
+  const sectionRefs = useRef([]); // Store references to sections
 
   const sections = [
     { id: 'section1', image: '/assets/card1.jpg' },
@@ -25,63 +18,49 @@ export default function Home() {
     { id: 'section7', image: '' },
   ];
 
-
-  const sectionRefs = useRef([]);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const index = Array.from(sectionRefs.current).indexOf(entry.target);
-          if (index === -1) return; // Guard clause if index is not found
 
           if (entry.isIntersecting) {
-            setIsVisible((prev) => {
-              if (!Array.isArray(prev)) return [index]; // Fallback in case prev is not an array
-              return [...new Set([...prev, index])]; // Add index if visible
-            });
+            setVisibleSections((prev) =>
+              prev.includes(index) ? prev : [...prev, index]
+            );
           } else {
-            setIsVisible((prev) => {
-              if (!Array.isArray(prev)) return []; // Fallback to empty array
-              return prev.filter((i) => i !== index); // Remove index if not visible
-            });
+            setVisibleSections((prev) => prev.filter((i) => i !== index));
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    const currentRefs = sectionRefs.current; // Store current refs to use in cleanup
-    currentRefs.forEach((section) => observer.observe(section));
+    sectionRefs.current.forEach((section) => {
+      if (section) observer.observe(section);
+    });
 
-    return () => {
-      currentRefs.forEach((section) => {
-        if (section instanceof Element) {
-          observer.unobserve(section);
-        }
-      });
-    };
+    return () => observer.disconnect();
   }, []);
-
-
-
 
   return (
     <main>
-
-
       <section className="h-auto home-content">
         <div className="content-container">
           {sections.map((section, index) => (
             <div
               key={section.id}
               ref={(el) => (sectionRefs.current[index] = el)}
-              data-image={section.image}
-
-              className={`section ${isVisible ? "visible" : ""}`}
+              className={`section animate-on-scroll ${
+                visibleSections.includes(index) ? 'active' : ''
+              }`}
               style={{
-                '--background-image': `url(${section.image})`,
+                backgroundImage: section.image ? `url(${section.image})` : 'none',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
               }}
+              
             >
               {index === 0 && (
                 <>
