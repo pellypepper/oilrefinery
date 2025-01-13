@@ -4,6 +4,7 @@
     width: 100%;
     color: black;
     opacity: 0;
+    font-family: "helvetica", serif; 
     animation: fadeInUp 0.8s ease-out forwards;
 }
 

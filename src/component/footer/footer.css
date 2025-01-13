@@ -2,6 +2,7 @@
     font-family: "Bona Nova SC", serif; 
     height: max-content;
     margin-top: 2.7rem;
+        font-family: "helvetica", serif; 
 }
 .footer-wrapper p:hover, .footer-wrapper p a:hover{
 color: var(--primary-color);

@@ -4,7 +4,7 @@ main {
     overflow-y: scroll; 
     scroll-snap-type: y mandatory; 
     height: 100vh; 
-    font-family: "Bona Nova SC", serif; 
+    font-family: "helvetica", serif; 
   }
     
 

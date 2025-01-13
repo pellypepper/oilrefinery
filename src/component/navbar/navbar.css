@@ -7,16 +7,13 @@ nav{
     left: 0;
     right: 0;
     z-index: 999;
- font-family: "Bona Nova SC", serif;
+    font-family: "helvetica", serif; 
 }
 ul li a, .logo-wrapper h1 a{
     text-decoration: none;
     color: white;
   }
 
-.logo-wrapper{
-
-}  
 
 
 .logo-wrapper h1 span{
