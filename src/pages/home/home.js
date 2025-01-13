@@ -7,6 +7,8 @@ import Footer from '../../component/footer/footer';
 export default function Home() {
   const [visibleSections, setVisibleSections] = useState([]); // Track visible sections
   const sectionRefs = useRef([]); // Store references to sections
+  const [isIframeLoaded, setIframeLoaded] = useState(false);
+
 
   const sections = [
     { id: 'section1', image: '/assets/card1.webp' },
@@ -25,6 +27,7 @@ export default function Home() {
           const index = Array.from(sectionRefs.current).indexOf(entry.target);
 
           if (entry.isIntersecting) {
+            setIframeLoaded(true);
             setVisibleSections((prev) =>
               prev.includes(index) ? prev : [...prev, index]
             );
@@ -35,6 +38,10 @@ export default function Home() {
       },
       { threshold: 0.1 }
     );
+    const iframeWrapper = document.querySelector('.frame-wrapper');
+    if (iframeWrapper) {
+      observer.observe(iframeWrapper);
+    }
 
     sectionRefs.current.forEach((section) => {
       if (section) observer.observe(section);
@@ -149,17 +156,21 @@ export default function Home() {
 
                 <div className='content-6 text-content'>
                   <h1>Our Location</h1>
-                  <div className='frame-wrapper'>
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2230.5923996872893!2d92.86905987669368!3d56.00841267317989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5cd7ae39587ca113%3A0xbbad0e3605e3c0e6!2sBograda%20St%2C%20Krasnoyarsk%2C%20Krasnoyarskiy%20kray%2C%20Russia%2C%20660049!5e0!3m2!1sen!2suk!4v1736279444174!5m2!1sen!2suk"
-                      className='map-frame'
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      title="Description of iframe content"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    ></iframe>
-                  </div>
+                  <div className="frame-wrapper" style={{ minHeight: '400px' }}>
+      {isIframeLoaded ? (
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2230.5923996872893!2d92.86905987669368!3d56.00841267317989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5cd7ae39587ca113%3A0xbbad0e3605e3c0e6!2sBograda%20St%2C%20Krasnoyarsk%2C%20Krasnoyarskiy%20kray%2C%20Russia%2C%20660049!5e0!3m2!1sen!2suk!4v1736279444174!5m2!1sen!2suk"
+          className="map-frame"
+          style={{ border: 0, width: '100%', height: '400px' }}
+          allowFullScreen
+          loading="lazy"
+          title="Google Maps Embed"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      ) : (
+        <p>Loading map...</p>
+      )}
+    </div>
 
                   <div className='subscribe-wrapper'>
                     <h3>Subscribe For Our Newsletter</h3>
