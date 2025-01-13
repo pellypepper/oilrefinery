@@ -106,18 +106,24 @@ export default function Home() {
               }}
             >
               {index === 0 && (
-                <div className="content-1 text-content">
-                  <h1>TAIMYR FUEL</h1>
-                  <h2>Pioneering Energy <span>Solutions</span></h2>
-                  <h3>in Krasnoyarsk</h3>
-                  <button 
-                    aria-label="Learn more about our company"
-                    className="focus:ring-2 hover:bg-opacity-90"
-                  >
-                    Learn More
-                  </button>
-                  <p>At Taimyr Fuel Company, we are a premier oil refining and storage facility located in the heart of Kazakhstan, strategically positioned to fulfill the region's increasing energy requirements.</p>
-                </div>
+      <section
+      className="section active"
+      aria-label="Welcome section"
+      style={{
+          backgroundImage: "url('/assets/card1.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+      }}
+  >
+      <div className="content-1 text-content">
+          <h1>TAIMYR FUEL</h1>
+          <h2>Pioneering Energy <span>Solutions</span></h2>
+          <h3>in Krasnoyarsk</h3>
+          <button aria-label="Learn more about our company" className="focus:ring-2 hover:bg-opacity-90">Learn More</button>
+          <p>At Taimyr Fuel Company, we are a premier oil refining and storage facility located in the heart of Kazakhstan, strategically positioned to fulfill the region's increasing energy requirements.</p>
+      </div>
+  </section>
+  
               )}
 
             
