@@ -1,90 +1,127 @@
-import React, { useEffect, useState, useRef } from 'react';
+
+import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
 import './home.css';
 
-import Rating from '../../component/rating/rating';
-import Footer from '../../component/footer/footer';
+// Lazy load components for better performance
+const Rating = lazy(() => import('../../component/rating/rating'));
+const Footer = lazy(() => import('../../component/footer/footer'));
+
+// Optimize images with next/image if using Next.js, otherwise use optimized img loading
 
 export default function Home() {
-  const [visibleSections, setVisibleSections] = useState([]); // Track visible sections
-  const sectionRefs = useRef([]); // Store references to sections
+  const [visibleSections, setVisibleSections] = useState([]);
+  const sectionRefs = useRef([]);
   const [isIframeLoaded, setIframeLoaded] = useState(false);
 
-
+  // Predefine sections with proper aria labels and semantic structure
   const sections = [
-    { id: 'section1', image: '/assets/card1.webp' },
-    { id: 'section2', image: '/assets/bg2.webp' },
-    { id: 'section3', image: '/assets/bg3.webp' },
-    { id: 'section4', image: '' },
-    { id: 'section5', image: '' },
-    { id: 'section6', image: '' },
-    { id: 'section7', image: '' },
+    { 
+      id: 'hero',
+      image: '/assets/card1.webp',
+      ariaLabel: 'Welcome section'
+    },
+    { 
+      id: 'mission',
+      image: '/assets/bg2.webp',
+      ariaLabel: 'Our mission and vision'
+    },
+    { 
+      id: 'about',
+      image: '/assets/bg3.webp',
+      ariaLabel: 'About our company'
+    },
+    { 
+      id: 'services',
+      image: '',
+      ariaLabel: 'Our services'
+    },
+    { 
+      id: 'ratings',
+      image: '',
+      ariaLabel: 'Customer ratings'
+    },
+    { 
+      id: 'location',
+      image: '',
+      ariaLabel: 'Our location'
+    },
+    { 
+      id: 'footer',
+      image: '',
+      ariaLabel: 'Footer'
+    },
   ];
 
+  // Optimize intersection observer
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = Array.from(sectionRefs.current).indexOf(entry.target);
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '50px'
+    };
 
-          if (entry.isIntersecting) {
-            setIframeLoaded(true);
-            setVisibleSections((prev) =>
-              prev.includes(index) ? prev : [...prev, index]
-            );
-          } else {
-            setVisibleSections((prev) => prev.filter((i) => i !== index));
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const iframeWrapper = document.querySelector('.frame-wrapper');
-    if (iframeWrapper) {
-      observer.observe(iframeWrapper);
-    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const index = sectionRefs.current.indexOf(entry.target);
+        
+        if (entry.isIntersecting) {
+          setIframeLoaded(true);
+          setVisibleSections(prev => [...new Set([...prev, index])]);
+        }
+      });
+    }, observerOptions);
 
-    sectionRefs.current.forEach((section) => {
-      if (section) observer.observe(section);
-    });
+    const elements = sectionRefs.current.filter(Boolean);
+    elements.forEach(element => observer.observe(element));
 
-    return () => observer.disconnect();
+    return () => {
+      elements.forEach(element => observer.unobserve(element));
+      observer.disconnect();
+    };
+  }, []);
+
+  // Add passive scroll listener for performance
+  useEffect(() => {
+    const handleScroll = () => {
+      // Scroll handling logic
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <main>
-      <section className="h-auto home-content">
+      <article className="home-content">
         <div className="content-container">
           {sections.map((section, index) => (
-            <div
+            <section
               key={section.id}
-              ref={(el) => (sectionRefs.current[index] = el)}
-              className={`section animate-on-scroll ${
-                visibleSections.includes(index) ? 'active' : ''
-              }`}
+              ref={el => sectionRefs.current[index] = el}
+              className={`section ${visibleSections.includes(index) ? 'active' : ''}`}
+              aria-label={section.ariaLabel}
               style={{
                 backgroundImage: section.image ? `url(${section.image})` : 'none',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
               }}
-              
             >
               {index === 0 && (
-                <>
-                  <div className='content-1 text-content'>
-                    <h2>WELCOME TO TAIMYR FUEL COMPANY</h2>
-                    <h1>Pioneering Energy <span>Solutions</span></h1>
-
-                    <h5>in Krasnoyarsk</h5>
-                    <button>Learn More</button>
-                    <p>At Taimyr Furl Company, we are a premier oil refining and storage facility located in the heart of Kazakhstan, strategically positioned to fulfill the region's increasing energy requirements.</p>
-
-
-                  </div>
-                </>
+                <div className="content-1 text-content">
+                  <h1>TAIMYR FUEL</h1>
+                  <h2>Pioneering Energy <span>Solutions</span></h2>
+                  <h3>in Krasnoyarsk</h3>
+                  <button 
+                    aria-label="Learn more about our company"
+                    className="focus:ring-2 hover:bg-opacity-90"
+                  >
+                    Learn More
+                  </button>
+                  <p>At Taimyr Fuel Company, we are a premier oil refining and storage facility located in the heart of Kazakhstan, strategically positioned to fulfill the region's increasing energy requirements.</p>
+                </div>
               )}
 
-              {index === 1 && (
+            
+{index === 1 && (
                 <div className='content-2-wrapper text-content'>
                   <div className='content-2 '>
                     <div className='card-wrapper'>
@@ -151,51 +188,67 @@ export default function Home() {
                  <Rating />
                </div>
               )}
-
+              
               {index === 5 && (
+                <div className="content-6 text-content">
+                  <h2>Our Location</h2>
+                  <div 
+                    className="frame-wrapper"
+                    aria-label="Google Maps showing our location"
+                  >
+                    <Suspense fallback={<div>Loading map...</div>}>
+                      {isIframeLoaded && (
+                        <iframe
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2230.5923996872893!2d92.86905987669368!3d56.00841267317989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5cd7ae39587ca113%3A0xbbad0e3605e3c0e6!2sBograda%20St%2C%20Krasnoyarsk%2C%20Krasnoyarskiy%20kray%2C%20Russia%2C%20660049!5e0!3m2!1sen!2suk!4v1736279444174!5m2!1sen!2suk"
+                          className="map-frame"
+                          style={{ border: 0, width: '100%', height: '400px' }}
+                          allowFullScreen
+                          loading="lazy"
+                          title="Our location on Google Maps"
+                          referrerPolicy="no-referrer-when-downgrade"
+                        />
+                      )}
+                    </Suspense>
+                  </div>
 
-                <div className='content-6 text-content'>
-                  <h1>Our Location</h1>
-                  <div className="frame-wrapper" style={{ minHeight: '400px' }}>
-      {isIframeLoaded ? (
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2230.5923996872893!2d92.86905987669368!3d56.00841267317989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5cd7ae39587ca113%3A0xbbad0e3605e3c0e6!2sBograda%20St%2C%20Krasnoyarsk%2C%20Krasnoyarskiy%20kray%2C%20Russia%2C%20660049!5e0!3m2!1sen!2suk!4v1736279444174!5m2!1sen!2suk"
-          className="map-frame"
-          style={{ border: 0, width: '100%', height: '400px' }}
-          allowFullScreen
-          loading="lazy"
-          title="Google Maps Embed"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-      ) : (
-        <p>Loading map...</p>
-      )}
-    </div>
-
-                  <div className='subscribe-wrapper'>
+                  <div 
+                    className="subscribe-wrapper"
+                    role="form"
+                    aria-label="Newsletter subscription"
+                  >
                     <h3>Subscribe For Our Newsletter</h3>
                     <div>
-                      <input type="email" placeholder='Enter Your Email' />
-                      <button>Subscribe</button>
-
-                    </div>  
-
+                      <label htmlFor="email" className="sr-only">
+                        Email address
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter Your Email"
+                        aria-label="Enter your email for newsletter"
+                      />
+                      <button
+                        type="submit"
+                        aria-label="Subscribe to newsletter"
+                      >
+                        Subscribe
+                      </button>
+                    </div>
                   </div>
                 </div>
-
               )}
 
               {index === 6 && (
-
-                <div className='content-7 text-content'>
-                  <Footer />
-                </div>
-
+                <Suspense fallback={<div>Loading footer...</div>}>
+                    <div className='content-7 text-content'>
+                    <Footer />
+                    </div>
+                </Suspense>
               )}
-            </div>
+            </section>
           ))}
         </div>
-      </section>
+      </article>
     </main>
   );
 }
