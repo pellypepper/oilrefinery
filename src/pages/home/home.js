@@ -2,24 +2,23 @@
 import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
 import './home.css';
 
-// Lazy load components for better performance
+// Lazy load components
 const Rating = lazy(() => import('../../component/rating/rating'));
 const Footer = lazy(() => import('../../component/footer/footer'));
 
-// Optimize images with next/image if using Next.js, otherwise use optimized img loading
+// Throttle function
 function throttle(func, limit) {
   let lastFunc;
   let lastRan;
-  return function() {
+  return function (...args) {
     const context = this;
-    const args = arguments;
     if (!lastRan) {
       func.apply(context, args);
       lastRan = Date.now();
     } else {
       clearTimeout(lastFunc);
-      lastFunc = setTimeout(function() {
-        if ((Date.now() - lastRan) >= limit) {
+      lastFunc = setTimeout(() => {
+        if (Date.now() - lastRan >= limit) {
           func.apply(context, args);
           lastRan = Date.now();
         }
@@ -33,88 +32,54 @@ export default function Home() {
   const sectionRefs = useRef([]);
   const [isIframeLoaded, setIframeLoaded] = useState(false);
 
-  // Predefine sections with proper aria labels and semantic structure
   const sections = [
-    { 
-      id: 'hero',
-      image: '/assets/card1.webp',
-      ariaLabel: 'Welcome section'
-    },
-    { 
-      id: 'mission',
-      image: '/assets/bg2.webp',
-      ariaLabel: 'Our mission and vision'
-    },
-    { 
-      id: 'about',
-      image: '/assets/bg3.webp',
-      ariaLabel: 'About our company'
-    },
-    { 
-      id: 'services',
-      image: '',
-      ariaLabel: 'Our services'
-    },
-    { 
-      id: 'ratings',
-      image: '',
-      ariaLabel: 'Customer ratings'
-    },
-    { 
-      id: 'location',
-      image: '',
-      ariaLabel: 'Our location'
-    },
-    { 
-      id: 'footer',
-      image: '',
-      ariaLabel: 'Footer'
-    },
+    { id: 'hero', image: '/assets/card1.webp', ariaLabel: 'Welcome section' },
+    { id: 'mission', image: '/assets/bg2.webp', ariaLabel: 'Our mission and vision' },
+    { id: 'about', image: '/assets/bg3.webp', ariaLabel: 'About our company' },
+    { id: 'services', image: '', ariaLabel: 'Our services' },
+    { id: 'ratings', image: '', ariaLabel: 'Customer ratings' },
+    { id: 'location', image: '', ariaLabel: 'Our location' },
+    { id: 'footer', image: '', ariaLabel: 'Footer' },
   ];
-  
 
-  // Optimize intersection observer
+  // Intersection Observer
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '50px'
+      rootMargin: '50px',
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const index = sectionRefs.current.indexOf(entry.target);
-        
         if (entry.isIntersecting) {
           setIframeLoaded(true);
-          setVisibleSections(prev => [...new Set([...prev, index])]);
+          setVisibleSections((prev) => [...new Set([...prev, index])]);
         }
       });
     }, observerOptions);
 
     const elements = sectionRefs.current.filter(Boolean);
-    elements.forEach(element => observer.observe(element));
+    elements.forEach((element) => observer.observe(element));
 
     return () => {
-      elements.forEach(element => observer.unobserve(element));
+      elements.forEach((element) => observer.unobserve(element));
       observer.disconnect();
     };
   }, []);
 
-  // Add passive scroll listener for performance
- // Add passive scroll listener for performance
-useEffect(() => {
-  const handleScroll = throttle(() => {
-    // Scroll handling logic
-    console.log("Scroll event triggered!");
-  }, 200); // Add a throttle limit (200 ms in this case)
+  // Scroll Event Listener with Throttle
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      console.log('Scroll event triggered!');
+    }, 200);
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
-}, []);
-
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <main>
@@ -123,9 +88,10 @@ useEffect(() => {
           {sections.map((section, index) => (
             <section
               key={section.id}
-              ref={el => sectionRefs.current[index] = el}
+              ref={(el) => (sectionRefs.current[index] = el)}
               className={`section ${visibleSections.includes(index) ? 'active' : ''}`}
               aria-label={section.ariaLabel}
+              aria-hidden={!visibleSections.includes(index)}
               style={{
                 backgroundImage: section.image ? `url(${section.image})` : 'none',
                 backgroundSize: 'cover',
@@ -133,28 +99,20 @@ useEffect(() => {
               }}
             >
               {index === 0 && (
-      <section
-      className="section active"
-      aria-label="Welcome section"
-      style={{
-          backgroundImage: "url('/assets/card1.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-      }}
-  >
-      <div className="content-1 text-content">
-          <h1>TAIMYR FUEL</h1>
-          <h2>Pioneering Energy <span>Solutions</span></h2>
-          <h3>in Krasnoyarsk</h3>
-          <button aria-label="Learn more about our company" className="focus:ring-2 hover:bg-opacity-90">Learn More</button>
-          <p>At Taimyr Fuel Company, we are a premier oil refining and storage facility located in the heart of Kazakhstan, strategically positioned to fulfill the region's increasing energy requirements.</p>
-      </div>
-  </section>
-  
+                <div className="content-1 text-content">
+                  <h1>TAIMYR FUEL</h1>
+                  <h2>Pioneering Energy <span>Solutions</span></h2>
+                  <h3>in Krasnoyarsk</h3>
+                  <button aria-label="Learn more about our company" className="focus:ring-2 hover:bg-opacity-90">
+                    Learn More
+                  </button>
+                  <p>
+                    At Taimyr Fuel Company, we are a premier oil refining and storage facility located in the heart of
+                    Kazakhstan, strategically positioned to fulfill the region's increasing energy requirements.
+                  </p>
+                </div>
               )}
-
-            
-{index === 1 && (
+              {index === 1 && (
                 <div className='content-2-wrapper text-content'>
                   <div className='content-2 '>
                     <div className='card-wrapper'>
@@ -200,7 +158,7 @@ useEffect(() => {
               {index === 3 && (
                 <div className='content-4  text-content d-flex  flex-column px-4 h-100   '>
                   <h3><span className='tick'>____</span>WHAT WE DO</h3>
-                  <h1>Services What we Provide</h1>
+                  <h3>Services What we Provide</h3>
 
 
                   <div className="card-container">
@@ -217,12 +175,13 @@ useEffect(() => {
                 </div>
               )}
               {index === 4 && (
-               <div className='content-x text-content'>
-                 <Rating />
-               </div>
+                <Suspense fallback={<div>Loading ratings...</div>}>
+                  <div className="content-x text-content">
+                    <Rating />
+                  </div>
+                </Suspense>
               )}
-              
-              {index === 5 && (
+                  {index === 5 && (
                 <div className="content-6 text-content">
                   <h2>Our Location</h2>
                   <div 
@@ -273,9 +232,9 @@ useEffect(() => {
 
               {index === 6 && (
                 <Suspense fallback={<div>Loading footer...</div>}>
-                    <div className='content-7 text-content'>
+                  <div className="content-7 text-content">
                     <Footer />
-                    </div>
+                  </div>
                 </Suspense>
               )}
             </section>
