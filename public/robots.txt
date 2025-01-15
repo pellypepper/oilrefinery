@@ -1,17 +1,25 @@
+# Global rules
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+
+# Allow Google Maps embed
 User-agent: Googlebot
+Allow: /
 Allow: /maps/embed
-Allow: /search
 
-
-
-# Crawlers of certain social media sites are allowed to access page markup when google.com/imgres* links are shared. To learn more, please contact images-robots-allowlist@google.com.
+# Social Media Crawlers
 User-agent: Twitterbot
-Allow: /imgres
-Allow: /search
-
+Allow: /
+Allow: /images/
+Allow: /maps/embed
 
 User-agent: facebookexternalhit
-Allow: /imgres
-Allow: /search
+Allow: /
+Allow: /images/
+Allow: /maps/embed
 
-Sitemap: https://www.google.com/sitemap.xml
+# Sitemap
+Sitemap: https://taimyroil.com/sitemap.xml
