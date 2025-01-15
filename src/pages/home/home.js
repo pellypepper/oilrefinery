@@ -26,21 +26,22 @@ function throttle(func, limit) {
   };
 }
 
+// Declare sections before using them
+const sections = [
+  { id: 'hero', image: '/assets/card1.webp', ariaLabel: 'Welcome section' },
+  { id: 'mission', image: '/assets/bg2.webp', ariaLabel: 'Our mission and vision' },
+  { id: 'about', image: '/assets/bg3.webp', ariaLabel: 'About our company' },
+  { id: 'services', image: '', ariaLabel: 'Our services' },
+  { id: 'ratings', image: '', ariaLabel: 'Customer ratings' },
+  { id: 'location', image: '', ariaLabel: 'Our location' },
+  { id: 'footer', image: '', ariaLabel: 'Footer' },
+];
+
 export default function Home() {
   const [visibleSections, setVisibleSections] = useState([]);
   const [loadedBackgrounds, setLoadedBackgrounds] = useState(Array(sections.length).fill(false)); // State for loaded backgrounds
   const sectionRefs = useRef([]);
   const [isIframeLoaded, setIframeLoaded] = useState(false);
-
-  const sections = [
-    { id: 'hero', image: '/assets/card1.webp', ariaLabel: 'Welcome section' },
-    { id: 'mission', image: '/assets/bg2.webp', ariaLabel: 'Our mission and vision' },
-    { id: 'about', image: '/assets/bg3.webp', ariaLabel: 'About our company' },
-    { id: 'services', image: '', ariaLabel: 'Our services' },
-    { id: 'ratings', image: '', ariaLabel: 'Customer ratings' },
-    { id: 'location', image: '', ariaLabel: 'Our location' },
-    { id: 'footer', image: '', ariaLabel: 'Footer' },
-  ];
 
   // Intersection Observer
   useEffect(() => {
@@ -52,13 +53,17 @@ export default function Home() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const index = sectionRefs.current.indexOf(entry.target);
-        if (entry.isIntersecting && !loadedBackgrounds[index] && sections[index].image) {
-          // Set the background image to loaded when the section is in view
-          setLoadedBackgrounds((prev) => {
-            const newLoadedBackgrounds = [...prev];
-            newLoadedBackgrounds[index] = true; // Mark this background as loaded
-            return newLoadedBackgrounds;
-          });
+        if (entry.isIntersecting) {
+          setIframeLoaded(true);
+          setVisibleSections((prev) => [...new Set([...prev, index])]);
+          if (!loadedBackgrounds[index] && sections[index].image) {
+            // Set the background image to loaded when the section is in view
+            setLoadedBackgrounds((prev) => {
+              const newLoadedBackgrounds = [...prev];
+              newLoadedBackgrounds[index] = true; // Mark this background as loaded
+              return newLoadedBackgrounds;
+            });
+          }
         }
       });
     }, observerOptions);
@@ -70,7 +75,7 @@ export default function Home() {
       elements.forEach((element) => observer.unobserve(element));
       observer.disconnect();
     };
-  }, [loadedBackgrounds]);
+  }, [loadedBackgrounds]); // Added loadedBackgrounds to dependencies
 
   // Scroll Event Listener with Throttle
   useEffect(() => {
