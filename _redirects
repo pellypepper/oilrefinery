@@ -1,0 +1,4 @@
+# Redirect HTTP to HTTPS
+http://www.taimyroil.com/* https://taimyroil.com/:splat 301!
+http://taimyroil.com/* https://taimyroil.com/:splat 301!
+https://www.taimyroil.com/* https://taimyroil.com/:splat 301!
