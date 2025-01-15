@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
 import './home.css';
 
@@ -29,6 +28,7 @@ function throttle(func, limit) {
 
 export default function Home() {
   const [visibleSections, setVisibleSections] = useState([]);
+  const [loadedBackgrounds, setLoadedBackgrounds] = useState(Array(sections.length).fill(false)); // State for loaded backgrounds
   const sectionRefs = useRef([]);
   const [isIframeLoaded, setIframeLoaded] = useState(false);
 
@@ -52,9 +52,13 @@ export default function Home() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const index = sectionRefs.current.indexOf(entry.target);
-        if (entry.isIntersecting) {
-          setIframeLoaded(true);
-          setVisibleSections((prev) => [...new Set([...prev, index])]);
+        if (entry.isIntersecting && !loadedBackgrounds[index] && sections[index].image) {
+          // Set the background image to loaded when the section is in view
+          setLoadedBackgrounds((prev) => {
+            const newLoadedBackgrounds = [...prev];
+            newLoadedBackgrounds[index] = true; // Mark this background as loaded
+            return newLoadedBackgrounds;
+          });
         }
       });
     }, observerOptions);
@@ -66,7 +70,7 @@ export default function Home() {
       elements.forEach((element) => observer.unobserve(element));
       observer.disconnect();
     };
-  }, []);
+  }, [loadedBackgrounds]);
 
   // Scroll Event Listener with Throttle
   useEffect(() => {
@@ -93,7 +97,7 @@ export default function Home() {
               aria-label={section.ariaLabel}
               aria-hidden={!visibleSections.includes(index)}
               style={{
-                backgroundImage: section.image ? `url(${section.image})` : 'none',
+                backgroundImage: loadedBackgrounds[index] && section.image ? `url(${section.image})` : 'none',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -148,7 +152,6 @@ export default function Home() {
 
               {index === 2 && (
                 <div className='content-3 text-content'>
-
                   <h1>Fostering Innovation and Excellence in Krasnoyarsk’s Oil Sector</h1>
                   <p>Taimyr Fuel Company is a leading oil Mandate facilitator situated in Krasnoyarsk. As a vital player in the region's energy landscape, we focus on bringing buyers and seller company supplying high-quality petroleum products from a reputable refining company to satisfy both local and global demands. Our advantageous location, state-of-the-art technology, and dedication to sustainable energy practices establish us as a frontrunner in oil.</p>
                   <button>Learn More</button>
@@ -159,19 +162,13 @@ export default function Home() {
                 <div className='content-4  text-content d-flex  flex-column px-4 h-100   '>
                   <h3><span className='tick'>____</span>WHAT WE DO</h3>
                   <h3>Services What we Provide</h3>
-
-
                   <div className="card-container">
-
                     <div className='service-bg'> </div>
-
                     <div className='service-text'>
                       <h3>Oil Exploration</h3>
-                      <p>At Taimyr Fuel Company, we are committed to enhancing the exploration and production of oil to address the increasing global energy demands. Our Exploration & Production (E&P) services concentrate on identifying, extracting, and supplying high-quality crude oil from Krasnoyarsk's abundant natural reserves</p>
+                      <p>At Taimyr Fuel Company, we are committed to enhancing the exploration and production of oil to address the increasing global energy demands. Our Exploration & Production (E&P) services concentrate on identifying, extracting, and supplying high-quality crude oil from Krasnoyarsk's abundant natural reserves.</p>
                     </div>
                   </div>
-
-
                 </div>
               )}
               {index === 4 && (
@@ -181,7 +178,7 @@ export default function Home() {
                   </div>
                 </Suspense>
               )}
-                  {index === 5 && (
+              {index === 5 && (
                 <div className="content-6 text-content">
                   <h2>Our Location</h2>
                   <div 
