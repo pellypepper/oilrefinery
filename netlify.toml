@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://www.taimyroil.com/*"
+  to = "https://taimyroil.com/:splat"
+  status = 301
+  force = true
