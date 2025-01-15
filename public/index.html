@@ -4,9 +4,13 @@
     <meta charset="utf-8" />
   
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png" type="image/x-icon" />
+    <meta property="og:title" content="Taimyr Fuel Company" />
+    <meta property="og:description" content="Providing top-tier oil refining, storage, and distribution services in Krasnoyarsk." />
+    <meta property="og:image" content="https://www.taimyroil.com/favicon.png" />
+    <meta property="og:url" content="https://www.taimyroil.com" />
+    
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" type="image/png" />
 
     <meta name="description" content="Taimyr Fuel Company offers top-tier oil refining, storage, and distribution services in Krasnoyarsk, ensuring quality and innovation in the energy sector.">
     <link rel="canonical" href="https://www.taimyroil.com" />
@@ -70,5 +74,22 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <script>
+      setTimeout(function() {
+        var script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y';
+        script.async = true;
+        document.head.appendChild(script);
+    
+        script.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'UA-XXXXX-Y');
+        };
+      }, 3000); // Delay by 3 seconds
+    </script>
+    
   </body>
 </html>
