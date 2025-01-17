@@ -1,3 +1,25 @@
-# https://www.robotstxt.org/robotstxt.html
+# Global rules
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+
+# Allow Google Maps embed
 User-agent: Googlebot
+Allow: /
 Allow: /maps/embed
+
+# Social Media Crawlers
+User-agent: Twitterbot
+Allow: /
+Allow: /images/
+Allow: /maps/embed
+
+User-agent: facebookexternalhit
+Allow: /
+Allow: /images/
+Allow: /maps/embed
+
+# Sitemap
+Sitemap: https://taimyroil.com/sitemap.xml
