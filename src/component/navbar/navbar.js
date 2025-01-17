@@ -1,13 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState , useEffect} from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import './navbar.css';
 import { FaWhatsapp } from "react-icons/fa";
-import { Link, Outlet } from 'react-router-dom';
-
+import { Link, Outlet,useLocation } from 'react-router-dom';
+import { routesConfig } from '../../route';
 
 const Navbar = () => {
+  const location = useLocation();
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const menuRef = useRef(false);
 
@@ -24,7 +25,25 @@ const Navbar = () => {
   const toggleClose = () => {
     menuRef.current.classList.remove('active');
   }
+  useEffect(() => {
+    // Function to preload adjacent routes
+    const preloadAdjacentRoutes = () => {
+      const currentPath = location.pathname === '/' ? '/' : location.pathname.slice(1);
+      const currentIndex = routesConfig.findIndex(route => route.path === currentPath);
+      
+      // Preload next route
+      if (currentIndex < routesConfig.length - 1) {
+        routesConfig[currentIndex + 1].preload();
+      }
+      // Preload previous route
+      if (currentIndex > 0) {
+        routesConfig[currentIndex - 1].preload();
+      }
+    };
 
+    // Call preload function when route changes
+    preloadAdjacentRoutes();
+  }, [location]);
 
 
   return (

@@ -310,14 +310,15 @@ main {
    background-color: black ;
     width: 100%;
 
+
 }
-.content-4 h3{
+.content-4 h1{
     color: var(--primary-color);
     font-weight: bolder;
+  
 }
 .card-container{
-     
- 
+
     gap: 20px;
      
     height: 400px;
@@ -356,8 +357,11 @@ main {
 }
 
 .content-6{
-
-
+   display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin-top: 3rem;
+   
     width: 100%;
     padding: 40px;
     height: 100%;
@@ -365,8 +369,9 @@ main {
     color: white;
 }
 .content-6 h1{
+
     text-align: center;
-  
+ 
 
 }
 .frame-wrapper{
@@ -666,7 +671,7 @@ height: 300px;
 
     .content-4 h3{
         font-size: 15px;
-        margin-top: 4.5rem;
+
     }
     .content-4 h1{
         font-size: 20px;

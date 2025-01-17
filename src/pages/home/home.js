@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
 import './home.css';
+import LocationMap from '../../component/locationMap';
 
 // Lazy load components
 const Rating = lazy(() => import('../../component/rating/rating'));
@@ -165,7 +166,7 @@ export default function Home() {
 
               {index === 3 && (
                 <div className='content-4  text-content d-flex  flex-column px-4 h-100   '>
-                  <h3><span className='tick'>____</span>WHAT WE DO</h3>
+                  <h1><span className='tick'>____</span>WHAT WE DO</h1>
                   <h3>Services What we Provide</h3>
                   <div className="card-container">
                     <div className='service-bg'> </div>
@@ -192,15 +193,7 @@ export default function Home() {
                   >
                     <Suspense fallback={<div>Loading map...</div>}>
                       {isIframeLoaded && (
-                        <iframe
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2230.5923996872893!2d92.86905987669368!3d56.00841267317989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5cd7ae39587ca113%3A0xbbad0e3605e3c0e6!2sBograda%20St%2C%20Krasnoyarsk%2C%20Krasnoyarskiy%20kray%2C%20Russia%2C%20660049!5e0!3m2!1sen!2suk!4v1736279444174!5m2!1sen!2suk"
-                          className="map-frame"
-                          style={{ border: 0, width: '100%', height: '400px' }}
-                          allowFullScreen
-                          loading="lazy"
-                          title="Our location on Google Maps"
-                          referrerPolicy="no-referrer-when-downgrade"
-                        />
+                          <LocationMap />
                       )}
                     </Suspense>
                   </div>
