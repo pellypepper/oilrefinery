@@ -3,9 +3,9 @@
     "name":  "TAIMYR FUEL COMPANY | Leading Oil Refinery",
     "icons": [
       {
-        "src": "favicon.png",
+        "src": "favico.png",
         "type": "image/png",
-        "sizes": "249x100"
+        "sizes": "1617x798"
       }
     ],
     "start_url": "/",
