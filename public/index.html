@@ -1,48 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Early Hints and Critical Resources -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
-    <!-- Resource Hints -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/assets/card1.webp" as="image" />
+    <link rel="preload" href="/css/main.5e7e7acd.css" as="style" />
     
- 
+    <!-- Preconnect to Critical Domains -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    
+    <!-- Inline Critical CSS -->
+    <style>
+      /* Expanded Critical CSS */
+      body {
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .section {
+        min-height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      /* Add other critical styles for above-the-fold content */
+    </style>
+
+    <!-- Defer Non-Critical CSS -->
+    <link 
+      rel="stylesheet" 
+      href="/css/main.5e7e7acd.css"
+      media="print" 
+      onload="this.media='all'"
+    />
+    
+    <!-- Compressed Favicon Section -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
   
-  <!-- Favicon for all browsers -->
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" href="/favicon.png" />
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
-<!-- Apple Touch Icon for Safari -->
-<link rel="apple-touch-icon" href="/favicon-32x32.png" />
-
+    <!-- Multiple Sizes for Different Devices -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    
+    <!-- ICO fallback for older browsers -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Apple Touch Icon - Reuse your 32x32 for basic compatibility -->
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    
+    <!-- Manifest - If you have one -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Safari Pinned Tab -->
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    
+    <!-- Web Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- MS Tile Color -->
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    
     <title>TAIMYR FUEL COMPANY | Leading Oil Refinery in Krasnoyarsk</title>
     <meta name="description" content="Taimyr Fuel Company offers top-tier oil refining, storage, and distribution services in Krasnoyarsk, ensuring quality and innovation in the energy sector." />
-    <meta name="google-site-verification" content="cMuV5BknziskTtRVjHNowGA6olIACZjjoEWzG5mp5vc" />
-
-    <!-- Open Graph / Facebook -->
+    
+    <!-- Compressed Meta Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Taimyr Fuel Company" />
     <meta property="og:description" content="Providing top-tier oil refining, storage, and distribution services in Krasnoyarsk." />
     <meta property="og:image" content="https://taimyroil.com/favicon.png" />
     <meta property="og:url" content="https://taimyroil.com" />
-
-    <!-- Theme -->
     <meta name="theme-color" content="#000000" />
-
-    <!-- Canonical -->
     <link rel="canonical" href="https://taimyroil.com" />
-
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="/manifest.json?v=2" />
-
-
-    <!-- Schema.org for Rich Results -->
-    <script type="application/ld+json">
+    
+    <!-- Deferred Schema Loading -->
+    <script type="application/ld+json" defer>
       {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
@@ -62,60 +101,51 @@
         "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00"
       }
     </script>
-
-    <!-- Inline Critical CSS -->
-    <style>
-      /* Add your critical-path CSS here */
-      body {
-        margin: 0;
-        padding: 0;
-        -webkit-font-smoothing: antialiased;
-      }
-      #root {
-        min-height: 100vh;
-      }
-    </style>
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-        height="0" 
-        width="0" 
-        style="display:none;visibility:hidden">
-      </iframe>
-    </noscript>
-
     <div id="root"></div>
 
     <!-- Optimized Analytics Loading -->
     <script>
-      // Defer non-critical scripts
-      window.addEventListener('load', function() {
-        setTimeout(() => {
-          // Google Analytics
-          const gaScript = document.createElement('script');
-          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-          gaScript.async = true;
-          document.head.appendChild(gaScript);
+      // Defer analytics until after page load and idle
+      const loadAnalytics = () => {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => {
+            initAnalytics();
+          }, { timeout: 5000 });
+        } else {
+          setTimeout(initAnalytics, 5000);
+        }
+      };
 
-          gaScript.onload = () => {
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX', {
-              'send_page_view': false // Defer page view until page is interactive
-            });
-          };
+      const initAnalytics = () => {
+        // Google Analytics
+        const gaScript = document.createElement('script');
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+        gaScript.async = true;
+        document.head.appendChild(gaScript);
 
-          // Google Tag Manager
-          const gtmScript = document.createElement('script');
-          gtmScript.src = 'https://www.googletagmanager.com/gtag/js?id=GTM-XXXXXXX';
-          gtmScript.async = true;
-          document.head.appendChild(gtmScript);
-        }, 3000);
-      });
+        // GTM
+        const gtmScript = document.createElement('script');
+        gtmScript.src = 'https://www.googletagmanager.com/gtag/js?id=GTM-XXXXXXX';
+        gtmScript.async = true;
+        document.head.appendChild(gtmScript);
+
+        // Initialize GA
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+          'send_page_view': false
+        });
+      };
+
+      // Load analytics after page load
+      if (document.readyState === 'complete') {
+        loadAnalytics();
+      } else {
+        window.addEventListener('load', loadAnalytics);
+      }
     </script>
   </body>
 </html>
