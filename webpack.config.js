@@ -17,6 +17,28 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(png|jpg|webp)$/i,
+                use: [
+                  {
+                    loader: 'image-webpack-loader',
+                    options: {
+                      webp: {
+                        quality: 75
+                      },
+                      mozjpeg: {
+                        progressive: true,
+                        quality: 65
+                      },
+                      pngquant: {
+                        quality: [0.65, 0.90],
+                        speed: 4
+                      }
+                    }
+                  }
+                ]
+              },
+                
+            {
                 test: /\.jsx?$/, // Match .js and .jsx files
                 exclude: /node_modules/,
                 use: 'babel-loader',
@@ -33,12 +55,26 @@ module.exports = {
         ],
     },
     optimization: {
+        splitChunks: {
+            chunks: 'all',
+            maxSize: 244000, // 244KB chunks
+            cacheGroups: {
+              vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name(module) {
+                  const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                  return `vendor.${packageName.replace('@', '')}`;
+                },
+              },
+            },
+          },
         minimize: true,
         minimizer: [
             new TerserPlugin({
                 terserOptions: {
                     compress: {
                         drop_console: true, // Remove console logs in production
+                        drop_debugger: true
                     },
                 },
             }),
