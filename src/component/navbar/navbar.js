@@ -85,14 +85,14 @@ const Navbar = () => {
         <Outlet />
       </main>
       <div className="whatsapp-logo">
-                <Link
+                <a
                     href="https://wa.me/4407349459445"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="whatsapp-button"
                 >
                     <FaWhatsapp size={50} color="#25D366" />
-                </Link>
+                </a>
             </div>
 
         <div>
