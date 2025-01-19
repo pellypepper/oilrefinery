@@ -37,10 +37,20 @@ export default function Refinery() {
         <div className="oil-container">
             {/* Set meta tags using Helmet */}
             <Helmet>
-                <title>Oil Exploration and Production Service | Taimyr Fuel Company</title>
-                <meta name="description" content="At Taimyr Fuel Company, we specialize in oil exploration and production services, leveraging advanced technology to meet the world's energy demands." />
-                <meta name="keywords" content="oil exploration, production services, Taimyr Fuel Company, energy, crude oil, Krasnoyarsk" />
-                <meta name="author" content="Taimyr Fuel Company" />
+            <meta name="msapplication-TileColor" content="#da532c" />
+                <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+                <meta name="theme-color" content="#ffffff" />
+                <title>TAIMYR FUEL COMPANY | Leading Oil Refinery in Krasnoyarsk</title>
+                <meta name="description" content="Taimyr Fuel Company offers top-tier oil refining, storage, and distribution services in Krasnoyarsk, ensuring quality and innovation in the energy sector." />
+                
+                {/* Compressed Meta Tags */}
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="Taimyr Fuel Company" />
+                <meta property="og:description" content="Providing top-tier oil refining, storage, and distribution services in Krasnoyarsk." />
+                <meta property="og:image" content="https://taimyroil.com/favicon.png" />
+                <meta property="og:url" content="https://taimyroil.com" />
+                <meta name="theme-color" content="#000000" />
+                <link rel="canonical" href="https://taimyroil.com/refinery" />
             </Helmet>
 
             <div className="about-bg">
