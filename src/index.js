@@ -1,6 +1,6 @@
+// src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,12 +8,10 @@ import { onCLS, onFID, onLCP, onTTFB, onFCP } from 'web-vitals';
 
 // Performance monitoring function
 const reportWebVitalsToAnalytics = ({ name, delta, id }) => {
-  // Log to console in development
   if (process.env.NODE_ENV === 'development') {
     console.log(`Web Vital: ${name}`, delta, id);
   }
   
-  // Send to your analytics platform in production
   if (process.env.NODE_ENV === 'production') {
     try {
       console.log(`${name}: ${delta}`);
@@ -23,20 +21,7 @@ const reportWebVitalsToAnalytics = ({ name, delta, id }) => {
   }
 };
 
-// Monitor all vital metrics
-onCLS(reportWebVitalsToAnalytics);
-onFID(reportWebVitalsToAnalytics);
-onLCP(reportWebVitalsToAnalytics);
-onTTFB(reportWebVitalsToAnalytics);
-onFCP(reportWebVitalsToAnalytics);
-
-// Add performance mark for app start
-performance.mark('app-start');
-
-// Create root with error boundary
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-// Add error boundary wrapper
+// Error Boundary Component
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -62,12 +47,14 @@ class ErrorBoundary extends React.Component {
         </div>
       );
     }
-
     return this.props.children;
   }
 }
 
-// Render app with error boundary and performance monitoring
+// Initialize app
+performance.mark('app-start');
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
@@ -76,14 +63,21 @@ root.render(
   </React.StrictMode>
 );
 
-// Measure and log initial render time
+// Performance measurements
 performance.mark('app-rendered');
 performance.measure('app-start-to-render', 'app-start', 'app-rendered');
 
-// Report web vitals
-reportWebVitals(reportWebVitalsToAnalytics);
+// Monitor vitals
+onCLS(reportWebVitalsToAnalytics);
+onFID(reportWebVitalsToAnalytics);
+onLCP(reportWebVitalsToAnalytics);
+onTTFB(reportWebVitalsToAnalytics);
+onFCP(reportWebVitalsToAnalytics);
 
 // Lazy load Bootstrap JS
-import('bootstrap/dist/js/bootstrap.min.js').then(() => {
-  console.log('Bootstrap JS loaded');
-});
+import('bootstrap/dist/js/bootstrap.min.js')
+  .then(() => console.log('Bootstrap JS loaded'))
+  .catch(err => console.error('Failed to load Bootstrap JS:', err));
+
+// Report web vitals
+reportWebVitals(reportWebVitalsToAnalytics);

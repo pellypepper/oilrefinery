@@ -5,7 +5,6 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 import Navbar from './component/navbar/navbar';
 import { routesConfig } from './route';
 
-// Loading fallback component
 const PageLoader = () => (
   <div className="page-loader">
     <div className="loader-content">Loading...</div>
@@ -13,7 +12,6 @@ const PageLoader = () => (
 );
 
 function App() {
-  // Create router with lazy-loaded routes
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Navbar />}>
