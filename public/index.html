@@ -138,13 +138,13 @@
       const initAnalytics = () => {
         // Google Analytics
         const gaScript = document.createElement('script');
-        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16825606143';
         gaScript.async = true;
         document.head.appendChild(gaScript);
 
         // GTM
         const gtmScript = document.createElement('script');
-        gtmScript.src = 'https://www.googletagmanager.com/gtag/js?id=GTM-XXXXXXX';
+        gtmScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16825606143';
         gtmScript.async = true;
         document.head.appendChild(gtmScript);
 
@@ -152,7 +152,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX', {
+        gtag('config', 'AW-16825606143', {
           'send_page_view': false
         });
       };
