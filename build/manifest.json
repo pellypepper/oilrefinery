@@ -1,16 +1,27 @@
 {
-    "short_name": "Taimyr Oil",
-    "name":  "TAIMYR FUEL COMPANY | Leading Oil Refinery",
-    "icons": [
-      {
-        "src": "favicon.png",
-        "type": "image/png",
-        "sizes": "249x100"
-      }
-    ],
-    "start_url": "/",
-    "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
-  }
-  
+  "name": "TAIMYR FUEL COMPANY",
+  "short_name": "TAIMYR FUEL",
+  "description": "Leading Oil Refinery in Krasnoyarsk",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#5bbad5",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "1617x798",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
