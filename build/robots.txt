@@ -1,9 +1,16 @@
 # Global rules
 User-agent: *
 Allow: /
+Allow: /static/media/
+Allow: /static/css/
+Allow: /static/js/
 Disallow: /private/
 Disallow: /admin/
 Disallow: /temp/
+
+# Allow Googlebot to access OpenStreetMap tiles
+User-agent: Googlebot
+Allow: /15/
 
 # Allow Google Maps embed
 User-agent: Googlebot

@@ -20,11 +20,11 @@ const LocationMap = () => {
 
     // Create a custom marker icon
     const customIcon = L.icon({
-      iconUrl: '/images/marker-icon.png', // Update this path to match where you saved the images
+      iconUrl: '/marker-icon.png', // Update this path to match where you saved the images
       iconSize: [25, 41], // Size of the icon
       iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
       popupAnchor: [1, -34], // Point from which the popup should open relative to the iconAnchor
-      shadowUrl: '/images/marker-shadow.png', // Path to the shadow image
+      shadowUrl: '/marker-shadow.png', // Path to the shadow image
       shadowSize: [41, 41], // Size of the shadow
     });
 
