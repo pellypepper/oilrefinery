@@ -1,38 +1,31 @@
-// src/routes.js
 import { lazy } from 'react';
 
-// Lazy load all page components
-export const Home = lazy(() => import('./pages/home/home'));
-export const About = lazy(() => import('./pages/about/about'));
-export const Contact = lazy(() => import('./pages/contact/contact'));
-export const Refinery = lazy(() => import('./pages/services/refinery'));
-export const Hseq = lazy(() => import('./pages/hseq/hseq'));
-
-// Define routes configuration
+// Implement route-based code splitting with prefetching
 export const routesConfig = [
   {
     path: '/',
-    element: Home,
-    preload: () => import('./pages/home/home')
+    element: lazy(() => import(/* webpackChunkName: "home" */ './pages/home/home')),
+    // Preload on hover or when parent link is visible
+    preload: () => import(/* webpackPrefetch: true */ './pages/home/home')
   },
   {
     path: 'about',
-    element: About,
-    preload: () => import('./pages/about/about')
+    element: lazy(() => import(/* webpackChunkName: "about" */ './pages/about/about')),
+    preload: () => import(/* webpackPrefetch: true */ './pages/about/about')
   },
   {
     path: 'contact',
-    element: Contact,
-    preload: () => import('./pages/contact/contact')
+    element: lazy(() => import(/* webpackChunkName: "contact" */ './pages/contact/contact')),
+    preload: () => import(/* webpackPrefetch: true */ './pages/contact/contact')
   },
   {
     path: 'refinery',
-    element: Refinery,
-    preload: () => import('./pages/services/refinery')
+    element: lazy(() => import(/* webpackChunkName: "refinery" */ './pages/services/refinery')),
+    preload: () => import(/* webpackPrefetch: true */ './pages/services/refinery')
   },
   {
     path: 'hseq',
-    element: Hseq,
-    preload: () => import('./pages/hseq/hseq')
+    element: lazy(() => import(/* webpackChunkName: "hseq" */ './pages/hseq/hseq')),
+    preload: () => import(/* webpackPrefetch: true */ './pages/hseq/hseq')
   }
 ];
