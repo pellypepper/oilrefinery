@@ -214,7 +214,15 @@ module.exports = {
             test: /\.(js|css|html|svg)$/,
             threshold: 10240,
             minRatio: 0.8
-        })
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+              {
+                from: 'node_modules/leaflet/dist/images',
+                to: 'images'
+              }
+            ]
+          })
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
