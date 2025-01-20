@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,10 +10,11 @@
   <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
   <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
   <link rel="preconnect" href="https://c.tile.openstreetmap.org" crossorigin />
-  
-  <!-- Preload Critical Assets -->
 
-  
+  <!-- Preload Critical Assets -->
+  <link rel="preload" href="/assets/card1.webp" as="image" />
+  <link rel="preload" href="/marker-icon.webp" as="image" />
+
   <!-- Inline Critical CSS -->
   <style>
     /* Critical rendering CSS */
@@ -22,33 +24,34 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
     #root {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
+
     .section {
       min-height: 100vh;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
     }
+
     .location-map {
       height: 400px;
       width: 100%;
       opacity: 0;
       transition: opacity 0.3s ease-in;
     }
+
     .location-map.loaded {
       opacity: 1;
     }
   </style>
 
   <!-- Defer Non-Critical CSS -->
-  <link rel="stylesheet" 
-        href="/static/css/main.f9b58c8b.css" 
-        media="print" 
-        onload="this.media='all'" />
+  <link rel="stylesheet" href="/static/css/main.f9b58c8b.css" media="print" onload="this.media='all'" />
   <noscript>
     <link rel="stylesheet" href="/static/css/main.f9b58c8b.css">
   </noscript>
@@ -69,24 +72,53 @@
   <meta property="og:url" content="https://taimyroil.com" />
   <link rel="canonical" href="https://taimyroil.com" />
 
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-W6ZL52VW');
+  </script>
+  <!-- End Google Tag Manager -->
+
   <!-- Deferred Analytics Loading -->
   <script type="module">
     window.addEventListener('load', () => {
-      requestIdleCallback(() => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          const script = document.createElement('script');
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16825606143';
+          script.async = true;
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'AW-16825606143', {
+            'send_page_view': false
+          });
+        }, { timeout: 5000 });
+      } else {
+        // Fallback for browsers that do not support requestIdleCallback
         const script = document.createElement('script');
         script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16825606143';
         script.async = true;
         document.head.appendChild(script);
-        
+
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'AW-16825606143', {
           'send_page_view': false
         });
-      }, { timeout: 5000 });
+      }
     });
   </script>
+  <!-- End Deferred Analytics Loading -->
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -109,8 +141,18 @@
       "openingHours": "Mo,Tu,We,Th,Fr 09:00-17:00"
     }
   </script>
+
 </head>
+
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6ZL52VW"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <div id="root"></div>
 </body>
+
 </html>
