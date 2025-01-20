@@ -2,7 +2,8 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import './footer.css';
 import { Link } from 'react-router-dom';
-
+import { Suspense } from "react";
+import LocationMap from "../locationMap";
 
 
 export default function Footer() {
@@ -42,16 +43,10 @@ export default function Footer() {
 
                 <div className="grid-4">
                     <h3>Location</h3>
-                    <div>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2230.5923996872893!2d92.86905987669368!3d56.00841267317989!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5cd7ae39587ca113%3A0xbbad0e3605e3c0e6!2sBograda%20St%2C%20Krasnoyarsk%2C%20Krasnoyarskiy%20kray%2C%20Russia%2C%20660049!5e0!3m2!1sen!2suk!4v1736279444174!5m2!1sen!2suk"
-                            className='map-frame'
-                            style={{ border: 0 }}
-                            allowFullScreen
-                            loading="lazy"
-                            title="Description of iframe content"
-                            referrerPolicy="no-referrer-when-downgrade"
-                        ></iframe>
+                    <div className="map-frame">
+                    <Suspense fallback={<div>Loading map...</div>}>
+                    <LocationMap />
+                    </Suspense>
                     </div>
                 </div>
 

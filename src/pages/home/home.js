@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
 import './home.css';
 import LocationMap from '../../component/locationMap';
@@ -5,27 +7,6 @@ import LocationMap from '../../component/locationMap';
 // Lazy load components
 const Rating = lazy(() => import('../../component/rating/rating'));
 const Footer = lazy(() => import('../../component/footer/footer'));
-
-// Throttle function
-function throttle(func, limit) {
-  let lastFunc;
-  let lastRan;
-  return function (...args) {
-    const context = this;
-    if (!lastRan) {
-      func.apply(context, args);
-      lastRan = Date.now();
-    } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(() => {
-        if (Date.now() - lastRan >= limit) {
-          func.apply(context, args);
-          lastRan = Date.now();
-        }
-      }, limit - (Date.now() - lastRan));
-    }
-  };
-}
 
 // Declare sections before using them
 const sections = [
@@ -40,9 +21,8 @@ const sections = [
 
 export default function Home() {
   const [visibleSections, setVisibleSections] = useState([]);
-  const [loadedBackgrounds, setLoadedBackgrounds] = useState(Array(sections.length).fill(false)); // State for loaded backgrounds
+  const [loadedBackgrounds, setLoadedBackgrounds] = useState(Array(sections.length).fill(false));
   const sectionRefs = useRef([]);
-  const [isIframeLoaded, setIframeLoaded] = useState(false);
 
   // Intersection Observer
   useEffect(() => {
@@ -55,10 +35,9 @@ export default function Home() {
       entries.forEach((entry) => {
         const index = sectionRefs.current.indexOf(entry.target);
         if (entry.isIntersecting) {
-          setIframeLoaded(true);
           setVisibleSections((prev) => [...new Set([...prev, index])]);
+
           if (!loadedBackgrounds[index] && sections[index].image) {
-            // Set the background image to loaded when the section is in view
             setLoadedBackgrounds((prev) => {
               const newLoadedBackgrounds = [...prev];
               newLoadedBackgrounds[index] = true; // Mark this background as loaded
@@ -76,20 +55,7 @@ export default function Home() {
       elements.forEach((element) => observer.unobserve(element));
       observer.disconnect();
     };
-  }, [loadedBackgrounds]); // Added loadedBackgrounds to dependencies
-
-  // Scroll Event Listener with Throttle
-  useEffect(() => {
-    const handleScroll = throttle(() => {
-      console.log('Scroll event triggered!');
-    }, 200);
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  }, [loadedBackgrounds]);
 
   return (
     <main>
@@ -101,13 +67,13 @@ export default function Home() {
               ref={(el) => (sectionRefs.current[index] = el)}
               className={`section ${visibleSections.includes(index) ? 'active' : ''}`}
               aria-label={section.ariaLabel}
-              aria-hidden={!visibleSections.includes(index)}
               style={{
                 backgroundImage: loadedBackgrounds[index] && section.image ? `url(${section.image})` : 'none',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
             >
+              {/* Section content */}
               {index === 0 && (
                 <div className="content-1 text-content">
                   <h1>TAIMYR FUEL</h1>
@@ -122,7 +88,7 @@ export default function Home() {
                   </p>
                 </div>
               )}
-              {index === 1 && (
+          {index === 1 && (
                 <div className='content-2-wrapper text-content'>
                   <div className='content-2 '>
                     <div className='card-wrapper'>
@@ -192,12 +158,9 @@ export default function Home() {
                     aria-label="Google Maps showing our location"
                   >
                     <Suspense fallback={<div>Loading map...</div>}>
-                      {isIframeLoaded && (
-                          <LocationMap />
-                      )}
+                      <LocationMap />
                     </Suspense>
                   </div>
-
                   <div 
                     className="subscribe-wrapper"
                     role="form"
@@ -205,31 +168,23 @@ export default function Home() {
                   >
                     <h3>Subscribe For Our Newsletter</h3>
                     <div>
-                      <label htmlFor="email" className="sr-only">
-                        Email address
-                      </label>
+                      <label htmlFor="email" className="sr-only">Email address</label>
                       <input
                         type="email"
                         id="email"
                         placeholder="Enter Your Email"
                         aria-label="Enter your email for newsletter"
                       />
-                      <button
-                        type="submit"
-                        aria-label="Subscribe to newsletter"
-                      >
-                        Subscribe
-                      </button>
+                      <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
                     </div>
                   </div>
                 </div>
               )}
-
               {index === 6 && (
                 <Suspense fallback={<div>Loading footer...</div>}>
-                  <div className="content-7 text-content">
-                    <Footer />
-                  </div>
+               <div className='content-7 text-content'>
+               <Footer />
+               </div>
                 </Suspense>
               )}
             </section>

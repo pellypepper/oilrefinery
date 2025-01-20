@@ -92,6 +92,7 @@ const Navbar = () => {
                     className="whatsapp-button"
                 >
                     <FaWhatsapp size={50} color="#25D366" />
+                    <span className="sr-only">Chat with us on WhatsApp</span>
                 </a>
             </div>
 

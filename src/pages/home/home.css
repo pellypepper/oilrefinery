@@ -321,8 +321,9 @@ main {
 
     gap: 20px;
      
-    height: 400px;
+    height: 500px;
      display: flex;
+   
 }
 
 .service-bg{
@@ -335,7 +336,7 @@ main {
 .service-text{
         width: 100%;
  text-align: justify;
-    font-size: 20px;
+
     flex-direction: column;
     display: flex;
     justify-content: center;
@@ -357,11 +358,9 @@ main {
 }
 
 .content-6{
-   display: flex;
-    flex-direction: column;
-    justify-content: end;
+
     margin-top: 3rem;
-   
+  
     width: 100%;
     padding: 40px;
     height: 100%;
@@ -376,13 +375,9 @@ main {
 }
 .frame-wrapper{
 
-    height:  60%;
+    height:  70%;
 }
-.map-frame{
-    margin-top: 1rem;
-    width: 100%;
-    height: 100%;
-}
+
 .subscribe-wrapper{
 
      margin-top: 3rem;
@@ -483,11 +478,7 @@ display: flex;
     margin-top: 0rem;
 }
    
-    .card-style{
-
-
- 
-    }
+   
     .content-3 h1 {
    
         font-size: 35px;
@@ -499,13 +490,9 @@ display: flex;
     
     .content-3 p {
         font-size: 15px;
-      
-    }
-    .content-3 p {
-   
         width: 350px;
- 
     }
+   
    .home-content .content-4{
  
         justify-content: center;
@@ -514,26 +501,27 @@ display: flex;
    }
 
     .content-4 h3{
-        font-size: 14px;
-        margin-top: .5rem;
+        font-size: 20px;
+   
     }
     .content-4 h1{
-        font-size: 15px;
+        font-size: 30px;
     }
     .card-container {
         display: flex;
+        margin-top: 1rem;
     
 
-height: 300px;
+height: 500px;
   
          width: 100%;
       
     }
     .service-text h3{
-        font-size: 15px;
+        font-size: 20px;
     }
     .service-text p{
-        font-size: 12px;
+        font-size: 15px;
     }
    
 
@@ -670,21 +658,18 @@ height: 300px;
           }
 
     .content-4 h3{
-        font-size: 15px;
+        font-size: 18px;
 
     }
     .content-4 h1{
-        font-size: 20px;
+        font-size: 25px;
     }
-    .card-container {
-     
-        
+    .card-container{
+        margin-top: 1rem;
     }
-
-    .card-container .card-style {
-       
-        
-    }
+   .service-text p{
+    font-size: 15px;
+   }
 
    
 
@@ -782,12 +767,12 @@ height: 300px;
         width: 700px;
  
     }
-    .content-4 h3{
-        font-size: 18px;
+    .content-4 h3, .service-text p{
+        font-size: 20px;
    
     }
     .content-4 h1{
-        font-size: 20px;
+        font-size: 35px;
     }
     .content-5{
         flex-direction: row;
@@ -802,9 +787,7 @@ height: 300px;
     }.service-text h3{
         font-size: 20px;
     }
-    .service-text p{
-        font-size: 15px;
-    }
+   
     
    
     .rating h1{
@@ -876,12 +859,12 @@ height: 300px;
    
     }
     .content-4 h1{
-        font-size: 30px;
+        font-size: 40px;
     }.service-text h3{
         font-size: 22px;
     }
     .service-text p{
-        font-size: 17px;
+        font-size: 25px;
     }
     
     .rating{
