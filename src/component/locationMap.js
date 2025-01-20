@@ -1,51 +1,122 @@
-import React, { useEffect, useRef } from 'react';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React, { useEffect, useRef, useState } from 'react';
+import { memo } from 'react';
 import './map.css';
 
-const LocationMap = () => {
+const LocationMap = memo(() => {
   const mapRef = useRef(null);
+  const [isMapVisible, setIsMapVisible] = useState(false);
+  const [mapInstance, setMapInstance] = useState(null);
 
   useEffect(() => {
-    // Initialize the map
-    const map = L.map(mapRef.current, {
-      center: [56.008412, 92.869060], // Coordinates for Krasnoyarsk
-      zoom: 15,
-    });
+    // Lazy load Leaflet only when component is visible
+    const observer = new IntersectionObserver(
+      async ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsMapVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-    // Add OpenStreetMap tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+    if (mapRef.current) {
+      observer.observe(mapRef.current);
+    }
 
-    // Create a custom marker icon
-    const customIcon = L.icon({
-      iconUrl: '/marker-icon.png', // Update this path to match where you saved the images
-      iconSize: [48, 48], // Size of the icon
-      iconAnchor: [24, 48], // Point of the icon which will correspond to marker's location
-      popupAnchor: [0, -48], // Point from which the popup should open relative to the iconAnchor
-      shadowUrl: '/marker-shadow.png', // Path to the shadow image
-      shadowSize: [48, 48], // Size of the shadow
-    });
-
-    // Add a marker with the custom icon
-    L.marker([56.008412, 92.869060], { icon: customIcon })
-      .addTo(map)
-      .bindPopup('Taimyr Fuel Company Location')
-      .openPopup();
-
-    return () => {
-      map.remove(); // Clean up on unmount
-    };
+    return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!isMapVisible) return;
+
+    const initializeMap = async () => {
+      try {
+        // Dynamically import Leaflet
+        const L = (await import('leaflet')).default;
+        await import('leaflet/dist/leaflet.css');
+
+        // Initialize map
+        const map = L.map(mapRef.current, {
+          center: [56.008412, 92.869060],
+          zoom: 15,
+          zoomControl: false,
+          attributionControl: false
+        });
+
+        // Custom tile layer with WebP support and lazy loading
+        const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          className: 'map-tile',
+          loading: 'lazy'
+        });
+
+        // Create and add attribution control in bottom-right
+        L.control.attribution({
+          position: 'bottomright'
+        }).addTo(map);
+
+        // Add zoom control in top-right
+        L.control.zoom({
+          position: 'topright'
+        }).addTo(map);
+
+        // Custom marker with WebP support
+        const customIcon = L.icon({
+          iconUrl: '/marker-icon.webp',
+          iconSize: [48, 48],
+          iconAnchor: [24, 48],
+          popupAnchor: [0, -48],
+          shadowUrl: '/marker-shadow.webp',
+          shadowSize: [48, 48]
+        });
+
+        // Add marker
+        const marker = L.marker([56.008412, 92.869060], { 
+          icon: customIcon,
+          title: 'Taimyr Fuel Company Location'
+        }).addTo(map);
+
+        // Add popup with lazy loading
+        const popup = L.popup({
+          maxWidth: 220,
+          className: 'custom-popup'
+        }).setContent('Taimyr Fuel Company Location');
+
+        marker.bindPopup(popup);
+
+        // Add tile layer after setup
+        tileLayer.addTo(map);
+        
+        // Store map instance
+        setMapInstance(map);
+
+        // Add loaded class for fade-in effect
+        mapRef.current.classList.add('loaded');
+      } catch (error) {
+        console.error('Error initializing map:', error);
+      }
+    };
+
+    initializeMap();
+
+    // Cleanup
+    return () => {
+      if (mapInstance) {
+        mapInstance.remove();
+      }
+    };
+  }, [isMapVisible, mapInstance]);
+
   return (
-    <div 
-      ref={mapRef} 
-      className='location-map'
+    <div
+      ref={mapRef}
+      className="location-map"
+      role="region"
       aria-label="Interactive map showing Taimyr Fuel Company's location"
     />
   );
-};
+});
+
+LocationMap.displayName = 'LocationMap';
 
 export default LocationMap;

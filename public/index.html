@@ -4,14 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Preload Critical Resources -->
-  <link rel="preload" href="/static/css/main.f9b58c8b.css" as="style" />
-
-  <!-- Preconnect to Critical Domains -->
-  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-
+  <!-- Critical Resource Hints -->
+  <link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin />
+  <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
+  <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
+  <link rel="preconnect" href="https://c.tile.openstreetmap.org" crossorigin />
+  
+  <!-- Preload Critical Assets -->
+  <link rel="preload" href="/assets/card1.webp" as="image" />
+  <link rel="preload" href="/marker-icon.webp" as="image" />
+  
   <!-- Inline Critical CSS -->
   <style>
+    /* Critical rendering CSS */
     body {
       margin: 0;
       padding: 0;
@@ -27,46 +32,70 @@
       min-height: 100vh;
       background-position: center;
       background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .location-map {
+      height: 400px;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
+    .location-map.loaded {
+      opacity: 1;
     }
   </style>
 
   <!-- Defer Non-Critical CSS -->
   <link rel="stylesheet" 
-  href="/static/css/main.f9b58c8b.css" 
-  media="print"
-  onload="this.media='all'" />
+        href="/static/css/main.f9b58c8b.css" 
+        media="print" 
+        onload="this.media='all'" />
   <noscript>
     <link rel="stylesheet" href="/static/css/main.f9b58c8b.css">
   </noscript>
 
-  <!-- Compressed Favicon Section -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="taimyr" />
-<link rel="manifest" href="/site.webmanifest" />
-  <meta name="msapplication-TileColor" content="#da532c" />
-  <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
-  <meta name="theme-color" content="#ffffff" />
+  <!-- Optimized Favicon Section -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
+  <!-- SEO Meta Tags -->
   <title>TAIMYR FUEL COMPANY | Leading Oil Refinery in Krasnoyarsk</title>
   <meta name="description" content="Taimyr Fuel Company offers top-tier oil refining, storage, and distribution services in Krasnoyarsk, ensuring quality and innovation in the energy sector." />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Taimyr Fuel Company" />
   <meta property="og:description" content="Providing top-tier oil refining, storage, and distribution services in Krasnoyarsk." />
-  <meta property="og:image" content="https://taimyroil.com/favicon.png" />
+  <meta property="og:image" content="https://taimyroil.com/og-image.webp" />
   <meta property="og:url" content="https://taimyroil.com" />
-  <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://taimyroil.com" />
 
-  <!-- Deferred Schema Loading -->
-  <script type="application/ld+json" defer>
+  <!-- Deferred Analytics Loading -->
+  <script type="module">
+    window.addEventListener('load', () => {
+      requestIdleCallback(() => {
+        const script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16825606143';
+        script.async = true;
+        document.head.appendChild(script);
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-16825606143', {
+          'send_page_view': false
+        });
+      }, { timeout: 5000 });
+    });
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Taimyr Fuel Company",
-      "image": "https://taimyroil.com/favicon.png",
+      "image": "https://taimyroil.com/og-image.webp",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
@@ -84,43 +113,5 @@
 </head>
 <body>
   <div id="root"></div>
-
-  <!-- Optimized Analytics Loading -->
-  <script>
-    const loadAnalytics = () => {
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => {
-          initAnalytics();
-        }, { timeout: 5000 });
-      } else {
-        setTimeout(initAnalytics, 5000);
-      }
-    };
-
-    const initAnalytics = () => {
-      const gaScript = document.createElement('script');
-      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16825606143';
-      gaScript.async = true;
-      document.head.appendChild(gaScript);
-
-      const gtmScript = document.createElement('script');
-      gtmScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16825606143';
-      gtmScript.async = true;
-      document.head.appendChild(gtmScript);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'AW-16825606143', {
-        'send_page_view': false
-      });
-    };
-
-    if (document.readyState === 'complete') {
-      loadAnalytics();
-    } else {
-      window.addEventListener('load', loadAnalytics);
-    }
-  </script>
 </body>
 </html>
