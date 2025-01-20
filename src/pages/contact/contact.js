@@ -1,10 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import "./contact.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import Footer from "../../component/footer/footer";
 
 export default function Contact() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+      const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the form from submitting
+
+    if (isSubmitting) return; // Prevent multiple submissions
+
+    setIsSubmitting(true);
+
+    // Perform form submission logic here
+
+    // After submission logic, reset the submitting state
+    setIsSubmitting(false);
+  };
     return (
         <div className="contact-container">
             <div className="about-bg">
@@ -31,7 +45,7 @@ export default function Contact() {
 
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h3>CONTACT US</h3>
                 <h1>Get In Touch Contact Us</h1>
 
@@ -42,7 +56,9 @@ export default function Contact() {
                     </div>
                     <input type="text" placeholder="Subject" />
                     <textarea placeholder="Message"></textarea>
-                    <button>Submit Message</button>
+                    <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit Message'}
+        </button>
                 </div>
 
             </form>

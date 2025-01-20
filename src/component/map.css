@@ -2,3 +2,12 @@
     width: 100%;
     height: 100%;
 }
+.leaflet-marker-icon {
+  width: 25px;  /* Use natural width */
+  height: 41px; /* Use natural height */
+}
+
+.leaflet-marker-shadow {
+  width: 41px;  /* Use natural width */
+  height: 41px; /* Use natural height */
+}

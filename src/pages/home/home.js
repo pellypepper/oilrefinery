@@ -94,7 +94,7 @@ export default function Home() {
                     <div className='card-wrapper'>
                       <div className='card-title'>
                         <h1>01</h1>
-                        <h3>Our Mission</h3>
+                        <h1>Our Mission</h1>
                       </div>
                       <div className='card-content '>
                         <p>Our mission is to provide top-tier oil refining, storage, and logistics solutions while fostering sustainable development within the energy industry. We are dedicated to achieving excellence and ensuring safety.</p>
@@ -103,7 +103,7 @@ export default function Home() {
                     <div className='card-wrapper'>
                       <div className='card-title'>
                         <h1>02</h1>
-                        <h3>Our Vision</h3>
+                        <h1>Our Vision</h1>
                       </div>
                       <div className='card-content'>
                         <p>Our vision is to become a premier oil refining and storage center in Central Asia, globally acknowledged for our operational excellence, environmental sustainability, and technological advancements.</p>
@@ -112,7 +112,7 @@ export default function Home() {
                     <div className='card-wrapper'>
                       <div className='card-title'>
                         <h1>03</h1>
-                        <h3>Our Goal</h3>
+                        <h1>Our Goal</h1>
                       </div>
                       <div className='card-content'>
                         <p>Global Presence - To broaden our market footprint and establish strategic alliances that enable us to effectively cater to various markets throughout Europe, Asia, and the Middle East.</p>
@@ -133,7 +133,7 @@ export default function Home() {
               {index === 3 && (
                 <div className='content-4  text-content d-flex  flex-column px-4 h-100   '>
                   <h1><span className='tick'>____</span>WHAT WE DO</h1>
-                  <h3>Services What we Provide</h3>
+                  <p>Services What we Provide</p>
                   <div className="card-container">
                     <div className='service-bg'> </div>
                     <div className='service-text'>
