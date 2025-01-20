@@ -12,10 +12,10 @@ Allow: /static/css/
 # Allow Googlebot to access OpenStreetMap tiles
 User-agent: Googlebot
 Allow: /15/
+Allow: /maps/
 
 # Allow Google Maps embed
 User-agent: Googlebot
-Allow: /
 Allow: /maps/embed
 
 # Social Media Crawlers
