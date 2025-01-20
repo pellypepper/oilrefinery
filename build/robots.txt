@@ -1,7 +1,7 @@
 # Global rules
 User-agent: *
 Allow: /
-Allow: /static/media/
+
 Allow: /static/css/
 Allow: /static/js/
 Disallow: /private/
