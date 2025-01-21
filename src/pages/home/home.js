@@ -81,8 +81,8 @@ export default function Home() {
                   <h2>Pioneering Energy <span>Solutions</span></h2>
                   <h3>in Krasnoyarsk</h3>
                   <button aria-label="Learn more about our company" className="focus:ring-2 hover:bg-opacity-90">
-                   <Link to="/about">Learn More</Link>
-                  </button>
+  <Link to="/about">Learn More About Our Company</Link>
+</button>
                   <p>
                     At Taimyr Fuel Company, we are a premier oil refining and storage facility located in the heart of
                     Kazakhstan, strategically positioned to fulfill the region's increasing energy requirements.
