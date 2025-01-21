@@ -4,8 +4,8 @@ import './map.css';
 
 const LocationMap = memo(() => {
   const mapRef = useRef(null);
+  const mapInstanceRef = useRef(null);
   const [isMapVisible, setIsMapVisible] = useState(false);
-  const [mapInstance, setMapInstance] = useState(null);
 
   useEffect(() => {
     // Lazy load Leaflet only when component is visible
@@ -27,7 +27,7 @@ const LocationMap = memo(() => {
   }, []);
 
   useEffect(() => {
-    if (!isMapVisible) return;
+    if (!isMapVisible || !mapRef.current || mapInstanceRef.current) return;
 
     const initializeMap = async () => {
       try {
@@ -37,11 +37,14 @@ const LocationMap = memo(() => {
 
         // Initialize map
         const map = L.map(mapRef.current, {
-          center: [56.008412, 92.869060],
+          center: [56.008412, 92.86906],
           zoom: 15,
           zoomControl: false,
           attributionControl: false
         });
+
+        // Store map instance in ref instead of state
+        mapInstanceRef.current = map;
 
         // Custom tile layer with WebP support and lazy loading
         const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -71,7 +74,7 @@ const LocationMap = memo(() => {
         });
 
         // Add marker
-        const marker = L.marker([56.008412, 92.869060], { 
+        const marker = L.marker([56.008412, 92.86906], {
           icon: customIcon,
           title: 'Taimyr Fuel Company Location'
         }).addTo(map);
@@ -86,9 +89,6 @@ const LocationMap = memo(() => {
 
         // Add tile layer after setup
         tileLayer.addTo(map);
-        
-        // Store map instance
-        setMapInstance(map);
 
         // Add loaded class for fade-in effect
         mapRef.current.classList.add('loaded');
@@ -101,11 +101,12 @@ const LocationMap = memo(() => {
 
     // Cleanup
     return () => {
-      if (mapInstance) {
-        mapInstance.remove();
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove();
+        mapInstanceRef.current = null;
       }
     };
-  }, [isMapVisible, mapInstance]);
+  }, [isMapVisible]); // Only depend on isMapVisible
 
   return (
     <div
