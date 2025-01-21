@@ -7,6 +7,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -157,10 +159,12 @@ module.exports = {
                         return `vendor.${packageName.replace('@', '')}`;
                     }
                 },
-                default: {
+                common: {
+                    name: 'common',
                     minChunks: 2,
                     priority: -20,
-                    reuseExistingChunk: true
+                    reuseExistingChunk: true,
+                    enforce: true,
                 },
                 styles: {
                     name: 'styles',
@@ -170,9 +174,10 @@ module.exports = {
                 }
             }
         },
-        runtimeChunk: 'single'
+        runtimeChunk: 'single',
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].chunk.css',
@@ -223,7 +228,7 @@ module.exports = {
                 to: 'images'
               }
             ]
-          })
+        })
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.json'],
