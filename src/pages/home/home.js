@@ -170,12 +170,12 @@ export default function Home() {
                     <h3>Subscribe For Our Newsletter</h3>
                     <div>
                       <label htmlFor="email" className="sr-only">Email address</label>
-                      <input
-                        type="email"
-                        id="email"
-                        placeholder="Enter Your Email"
-                        aria-label="Enter your email for newsletter"
-                      />
+                      <input type="email" 
+                      id="email" 
+                      placeholder="Enter Your Email" 
+                      aria-label="Enter your email for newsletter" 
+                      autoComplete="email" />
+
                       <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
                     </div>
                   </div>
