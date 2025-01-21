@@ -80,9 +80,9 @@ export default function Home() {
                   <h1>TAIMYR FUEL</h1>
                   <h2>Pioneering Energy <span>Solutions</span></h2>
                   <h3>in Krasnoyarsk</h3>
-                  <button aria-label="Learn more about our company" className="focus:ring-2 hover:bg-opacity-90">
-  <Link to="/about">Learn More About Our Company</Link>
-</button>
+                  <a href="/about" className="link learn-more" aria-label="Learn more about our company" data-discover="true">
+  Learn More About Our Company
+</a>
                   <p>
                     At Taimyr Fuel Company, we are a premier oil refining and storage facility located in the heart of
                     Kazakhstan, strategically positioned to fulfill the region's increasing energy requirements.
@@ -127,7 +127,7 @@ export default function Home() {
                 <div className='content-3 text-content'>
                   <h1>Fostering Innovation and Excellence in Krasnoyarsk’s Oil Sector</h1>
                   <p>Taimyr Fuel Company is a leading oil Mandate facilitator situated in Krasnoyarsk. As a vital player in the region's energy landscape, we focus on bringing buyers and seller company supplying high-quality petroleum products from a reputable refining company to satisfy both local and global demands. Our advantageous location, state-of-the-art technology, and dedication to sustainable energy practices establish us as a frontrunner in oil.</p>
-                  <button>     <Link to="/hseq">Learn More</Link></button>
+                  <button>     <Link to="/hseq">Learn More HSEQ</Link></button>
                 </div>
               )}
 
