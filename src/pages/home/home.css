@@ -6,7 +6,10 @@ main {
     height: 100vh; 
     font-family: "helvetica", serif; 
   }
-    
+   .content-1 a, .content-3 a{
+        text-decoration: none;
+        color: white;
+    }
 .loaded {
     opacity: 1;
     transition: opacity 0.3s ease-in;
@@ -199,6 +202,10 @@ main {
     border:  10px solid var(--primary-color);
     color : white;
 }
+.content-2-bold{
+    font-weight: bolder;
+  
+}
 
 .card-title{
     display: flex;
@@ -208,7 +215,8 @@ main {
 
 .card-title h1{
     background-color:var(--primary-color);       
-    padding: 10px;
+    padding: 12px;
+  
 }
 
 .card-content p{
@@ -355,6 +363,8 @@ main {
     background-color: black;
   width: 100%;
   height: 100%;
+ 
+
 }
 
 .content-6{
@@ -420,12 +430,14 @@ display: flex;
  
 
 }
-.swiper-pagination {
-    display: none !important; /* Forcefully hide pagination */
-}
-.swiper-slide{
 
-}
+.focus\:ring-2 {
+    padding: 12px 16px; /* Increases the clickable area */
+    margin: 8px; /* Adds spacing between elements */
+  }
+  .hover\:bg-opacity-90:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Optional hover effect */
+  }
 
 @media  screen and (max-width: 480px){
 
@@ -470,7 +482,7 @@ display: flex;
     font-size: 15px;
     padding: 5px;
 }
-.content-2 h3{
+.content-2-bold{
     font-size: 12px;
 }
 .content-2 p{
@@ -497,7 +509,8 @@ display: flex;
  
         justify-content: center;
         align-items: center;
-      
+    
+   
    }
 
     .content-4 h3{
@@ -512,7 +525,7 @@ display: flex;
         margin-top: 1rem;
     
 
-height: 500px;
+height: 400px;
   
          width: 100%;
       
@@ -619,7 +632,7 @@ height: 500px;
     font-size: 15px;
     padding: 5px;
 }
-.content-2 h3{
+.content-2-bold{
     font-size: 15px;
 }
 .content-2 p{
@@ -740,7 +753,7 @@ height: 500px;
         font-size: 17px;
         padding: 5px;
     }
-    .content-2 h3{
+    .content-2-bold{
         font-size: 17px;
     }
     .content-2 p{
@@ -826,7 +839,7 @@ height: 500px;
         font-size: 20px;
         padding: 10px;
     }
-    .content-2 h3{
+    .content-2-bold{
         font-size: 20px;
     }
     .content-2 p{

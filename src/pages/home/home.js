@@ -3,8 +3,9 @@
 import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
 import './home.css';
 import LocationMap from '../../component/locationMap';
-
+import { Link } from 'react-router-dom';
 // Lazy load components
+
 const Rating = lazy(() => import('../../component/rating/rating'));
 const Footer = lazy(() => import('../../component/footer/footer'));
 
@@ -80,7 +81,7 @@ export default function Home() {
                   <h2>Pioneering Energy <span>Solutions</span></h2>
                   <h3>in Krasnoyarsk</h3>
                   <button aria-label="Learn more about our company" className="focus:ring-2 hover:bg-opacity-90">
-                    Learn More
+                   <Link to="/about">Learn More</Link>
                   </button>
                   <p>
                     At Taimyr Fuel Company, we are a premier oil refining and storage facility located in the heart of
@@ -94,16 +95,16 @@ export default function Home() {
                     <div className='card-wrapper'>
                       <div className='card-title'>
                         <h1>01</h1>
-                        <h1>Our Mission</h1>
+                        <p className='content-2-bold'>Our Mission</p>
                       </div>
                       <div className='card-content '>
-                        <p>Our mission is to provide top-tier oil refining, storage, and logistics solutions while fostering sustainable development within the energy industry. We are dedicated to achieving excellence and ensuring safety.</p>
+                        <p >Our mission is to provide top-tier oil refining, storage, and logistics solutions while fostering sustainable development within the energy industry. We are dedicated to achieving excellence and ensuring safety.</p>
                       </div>
                     </div>
                     <div className='card-wrapper'>
                       <div className='card-title'>
                         <h1>02</h1>
-                        <h1>Our Vision</h1>
+                        <p className='content-2-bold'>Our Vision</p>
                       </div>
                       <div className='card-content'>
                         <p>Our vision is to become a premier oil refining and storage center in Central Asia, globally acknowledged for our operational excellence, environmental sustainability, and technological advancements.</p>
@@ -112,7 +113,7 @@ export default function Home() {
                     <div className='card-wrapper'>
                       <div className='card-title'>
                         <h1>03</h1>
-                        <h1>Our Goal</h1>
+                        <p className='content-2-bold'>Our Goal</p>
                       </div>
                       <div className='card-content'>
                         <p>Global Presence - To broaden our market footprint and establish strategic alliances that enable us to effectively cater to various markets throughout Europe, Asia, and the Middle East.</p>
@@ -126,7 +127,7 @@ export default function Home() {
                 <div className='content-3 text-content'>
                   <h1>Fostering Innovation and Excellence in Krasnoyarsk’s Oil Sector</h1>
                   <p>Taimyr Fuel Company is a leading oil Mandate facilitator situated in Krasnoyarsk. As a vital player in the region's energy landscape, we focus on bringing buyers and seller company supplying high-quality petroleum products from a reputable refining company to satisfy both local and global demands. Our advantageous location, state-of-the-art technology, and dedication to sustainable energy practices establish us as a frontrunner in oil.</p>
-                  <button>Learn More</button>
+                  <button>     <Link to="/hseq">Learn More</Link></button>
                 </div>
               )}
 
@@ -137,7 +138,7 @@ export default function Home() {
                   <div className="card-container">
                     <div className='service-bg'> </div>
                     <div className='service-text'>
-                      <h3>Oil Exploration</h3>
+                      <h1>Oil Exploration</h1>
                       <p>At Taimyr Fuel Company, we are committed to enhancing the exploration and production of oil to address the increasing global energy demands. Our Exploration & Production (E&P) services concentrate on identifying, extracting, and supplying high-quality crude oil from Krasnoyarsk's abundant natural reserves.</p>
                     </div>
                   </div>
