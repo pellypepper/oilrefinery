@@ -1,5 +1,43 @@
+# Handle HTTP to HTTPS redirects
+[[redirects]]
+  from = "http://www.taimyroil.com/*"
+  to = "https://taimyroil.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://taimyroil.com/*"
+  to = "https://taimyroil.com/:splat"
+  status = 301
+  force = true
+
+# Handle HTTPS www to non-www
 [[redirects]]
   from = "https://www.taimyroil.com/*"
   to = "https://taimyroil.com/:splat"
   status = 301
   force = true
+
+# Handle client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build]
+  command = "npm run build"
+  publish = "build"
+
+# Add headers for caching and security
+[[headers]]
+  for = "/*"
+    [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/static/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
